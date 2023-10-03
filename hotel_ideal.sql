@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost: 3307
--- Tiempo de generación: 03-10-2023 a las 16:28:22
+-- Tiempo de generación: 03-10-2023 a las 16:53:25
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -103,7 +103,9 @@ ALTER TABLE `huesped`
 -- Indices de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`idReserva`);
+  ADD PRIMARY KEY (`idReserva`),
+  ADD KEY `idHuesped` (`idHuesped`),
+  ADD KEY `codigo` (`codigo`);
 
 --
 -- Indices de la tabla `tipodehabitacion`
@@ -142,6 +144,13 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `habitaciones`
   ADD CONSTRAINT `habitaciones_ibfk_1` FOREIGN KEY (`codigo`) REFERENCES `tipodehabitacion` (`codigo`);
+
+--
+-- Filtros para la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`idHuesped`) REFERENCES `huesped` (`Idhuesped`),
+  ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`codigo`) REFERENCES `tipodehabitacion` (`codigo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
