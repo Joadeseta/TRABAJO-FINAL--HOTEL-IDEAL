@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost: 3307
--- Tiempo de generación: 03-10-2023 a las 16:53:25
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-10-2023 a las 19:54:23
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.1.17
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,7 +63,7 @@ CREATE TABLE `reserva` (
   `cantPersonas` int(30) NOT NULL,
   `Fecha_entrada` date NOT NULL,
   `Fecha_salida` date NOT NULL,
-  `ImporteTotal` int(30) NOT NULL,
+  `ImporteTotal` double NOT NULL,
   `Estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,6 +74,7 @@ CREATE TABLE `reserva` (
 --
 
 CREATE TABLE `tipodehabitacion` (
+  `idTipoHabitacion` int(30) NOT NULL,
   `codigo` int(30) NOT NULL,
   `cantPersonas` int(30) NOT NULL,
   `cantCamas` int(30) NOT NULL,
@@ -111,7 +112,8 @@ ALTER TABLE `reserva`
 -- Indices de la tabla `tipodehabitacion`
 --
 ALTER TABLE `tipodehabitacion`
-  ADD PRIMARY KEY (`codigo`);
+  ADD PRIMARY KEY (`idTipoHabitacion`),
+  ADD KEY `codigo` (`codigo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -134,6 +136,12 @@ ALTER TABLE `huesped`
 --
 ALTER TABLE `reserva`
   MODIFY `idReserva` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tipodehabitacion`
+--
+ALTER TABLE `tipodehabitacion`
+  MODIFY `idTipoHabitacion` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
