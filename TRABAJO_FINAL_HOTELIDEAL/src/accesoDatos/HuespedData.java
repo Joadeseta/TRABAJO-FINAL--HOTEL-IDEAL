@@ -9,6 +9,6 @@ package accesoDatos;
  *
  * @author joadz
  */
-public class huespecData {
+public class HuespedData {
     
 }

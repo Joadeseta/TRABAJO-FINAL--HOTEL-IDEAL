@@ -1,10 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entidades;
 
 /**
  *
  * @author joadz
  */
-public class huesped {
+public class Huesped {
+    
 
     private int id;
     private String nombre;
@@ -13,7 +19,7 @@ public class huesped {
     private String correo;
     private String celular;
 
-    public huesped(String nombre, String dni, String domicilio, String correo, String celular) {
+    public Huesped(String nombre, String dni, String domicilio, String correo, String celular) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -21,7 +27,7 @@ public class huesped {
         this.celular = celular;
     }
 
-    public huesped(int id, String nombre, String dni, String domicilio, String correo, String celular) {
+    public Huesped(int id, String nombre, String dni, String domicilio, String correo, String celular) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -80,4 +86,6 @@ public class huesped {
     
    
 }
+
+
 
