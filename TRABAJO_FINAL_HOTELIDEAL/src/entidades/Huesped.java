@@ -17,33 +17,36 @@ public class Huesped {
     private String domicilio;
     private String correo;
     private int celular;
+    private boolean estado;
 
     public Huesped() {
 
     }
 
-    public Huesped(String nombre, int dni, String domicilio, String correo, int celular) {
+    public Huesped(String nombre, int dni, String domicilio, String correo, int celular, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
     }
 
-    public Huesped(int id, String nombre, int dni, String domicilio, String correo, int celular) {
+    public Huesped(int id, String nombre, int dni, String domicilio, String correo, int celular, boolean estado) {
         this.idHuesped = id;
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
     }
 
-    public int getId() {
+    public int getIdHuesped() {
         return idHuesped;
     }
 
-    public void setId(int id) {
+    public void setIdHuesped(int id) {
         this.idHuesped = id;
     }
 
@@ -85,6 +88,14 @@ public class Huesped {
 
     public void setCelular(int celular) {
         this.celular = celular;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 }
