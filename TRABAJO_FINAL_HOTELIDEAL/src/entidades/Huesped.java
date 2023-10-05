@@ -10,16 +10,19 @@ package entidades;
  * @author joadz
  */
 public class Huesped {
-    
 
-    private int id;
+    private int idHuesped;
     private String nombre;
-    private String dni;
+    private int dni;
     private String domicilio;
     private String correo;
-    private String celular;
+    private int celular;
 
-    public Huesped(String nombre, String dni, String domicilio, String correo, String celular) {
+    public Huesped() {
+
+    }
+
+    public Huesped(String nombre, int dni, String domicilio, String correo, int celular) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -27,8 +30,8 @@ public class Huesped {
         this.celular = celular;
     }
 
-    public Huesped(int id, String nombre, String dni, String domicilio, String correo, String celular) {
-        this.id = id;
+    public Huesped(int id, String nombre, int dni, String domicilio, String correo, int celular) {
+        this.idHuesped = id;
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -37,11 +40,11 @@ public class Huesped {
     }
 
     public int getId() {
-        return id;
+        return idHuesped;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idHuesped = id;
     }
 
     public String getNombre() {
@@ -52,11 +55,11 @@ public class Huesped {
         this.nombre = nombre;
     }
 
-    public String getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
@@ -76,16 +79,12 @@ public class Huesped {
         this.correo = correo;
     }
 
-    public String getCelular() {
+    public int getCelular() {
         return celular;
     }
 
-    public void setCelular(String celular) {
+    public void setCelular(int celular) {
         this.celular = celular;
     }
-    
-   
+
 }
-
-
-
