@@ -24,7 +24,7 @@ public class HuespedData {
 
     private Connection con = null;
 
-    // Constructor que inicializa la conexión a la base de datos al crear una instancia de AlumnoData.
+    
     public HuespedData() {
         con = Conexion.getConexion();
         if (con == null) {
