@@ -49,12 +49,17 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jTextCORREOHUESPED = new javax.swing.JTextField();
         jTextCELULAR = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jRadioHUESPEDESACTIVOS = new javax.swing.JRadioButton();
+        jRadioHUESPEDESINACTIVOS = new javax.swing.JRadioButton();
 
         jPanelNOMBREHUESPED.setBackground(new java.awt.Color(204, 255, 255));
 
         JLAlumno.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLAlumno.setForeground(new java.awt.Color(0, 153, 204));
-        JLAlumno.setText("HUESPED");
+        JLAlumno.setText("HUESPEDES");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Domicilio:");
@@ -141,80 +146,103 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Celular:");
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jButton1.setText("LISTA DE HUESPEDES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jRadioHUESPEDESACTIVOS.setText("Huespedes Activos");
+
+        jRadioHUESPEDESINACTIVOS.setText("Huespedes Inactivos");
+        jRadioHUESPEDESINACTIVOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioHUESPEDESINACTIVOSActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelNOMBREHUESPEDLayout = new javax.swing.GroupLayout(jPanelNOMBREHUESPED);
         jPanelNOMBREHUESPED.setLayout(jPanelNOMBREHUESPEDLayout);
         jPanelNOMBREHUESPEDLayout.setHorizontalGroup(
             jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextIdHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jRadioESTADOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBuscarPorId))
-                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(149, 149, 149))
-                            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(104, 104, 104))
-                                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(100, 100, 100))
-                                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextCELULAR, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextCORREOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addComponent(jTextNumeroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonBuscarPorDani))
-                            .addComponent(jTextDOMICILIOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(JLAlumno)
-                .addGap(199, 199, 199))
+                .addGap(232, 232, 232))
+            .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(184, 184, 184)
+                                    .addComponent(jRadioESTADOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(149, 149, 149)
+                                    .addComponent(jTextNumeroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButtonBuscarPorDani))
+                                .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextIdHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButtonBuscarPorId))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(376, 376, 376))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel7))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextCORREOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextDOMICILIOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextCELULAR, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(83, 83, 83))
+                                .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addGap(48, 48, 48)
+                                    .addComponent(jRadioHUESPEDESACTIVOS)
+                                    .addGap(101, 101, 101)
+                                    .addComponent(jRadioHUESPEDESINACTIVOS)))
+                            .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                    .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(43, 43, 43)
+                                    .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanelNOMBREHUESPEDLayout.setVerticalGroup(
             jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(JLAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextNumeroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,7 +252,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jTextIdHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscarPorId))
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -244,7 +272,15 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jRadioESTADOHUESPED))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioHUESPEDESACTIVOS)
+                    .addComponent(jRadioHUESPEDESINACTIVOS))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -432,6 +468,14 @@ public class huespedVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCELULARActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioHUESPEDESINACTIVOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioHUESPEDESINACTIVOSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioHUESPEDESINACTIVOSActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLAlumno;
@@ -439,6 +483,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBGuardarAlumno;
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jBSalir3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarPorDani;
     private javax.swing.JButton jButtonBuscarPorId;
     private javax.swing.JLabel jLabel1;
@@ -448,8 +493,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanelNOMBREHUESPED;
     private javax.swing.JRadioButton jRadioESTADOHUESPED;
+    private javax.swing.JRadioButton jRadioHUESPEDESACTIVOS;
+    private javax.swing.JRadioButton jRadioHUESPEDESINACTIVOS;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextApellido;
     private javax.swing.JTextField jTextCELULAR;
     private javax.swing.JTextField jTextCORREOHUESPED;

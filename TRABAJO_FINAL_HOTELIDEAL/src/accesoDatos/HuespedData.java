@@ -24,7 +24,6 @@ public class HuespedData {
 
     private Connection con = null;
 
-    
     public HuespedData() {
         con = Conexion.getConexion();
         if (con == null) {
@@ -154,31 +153,31 @@ public class HuespedData {
         return huesped;
     }
 
-    public Huesped ObtenerTodosLosHuesped() {
-       
-    List<Huesped> listaHuespedes = new ArrayList<>();
-    String sql = "SELECT idHuesped, dni , apellido, nombre, fechaNacimiento FROM huesped";
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+    public ArrayList<Huesped> obtenerTodosLosHuespedes() {
         
-        while (rs.next()) {
-            Huesped huesped = new Huesped();
-            huesped.setIdHuesped(rs.getInt("idHuesped"));
-            huesped.setDni(rs.getInt("dni"));
-            huesped.setDomicilio(rs.getString("domicilio"));
-            huesped.setCorreo(rs.getString("correo"));
-            huesped.setCelular(rs.getInt("celular"));
-            huesped.setEstado(true);
-            listaHuespedes.add(huesped);
-        }
-        ps.close();
+        ArrayList<Huesped> listaHuespedes = new ArrayList<>();
+        String sql = "SELECT idHuesped, dni, apellido, nombre, domicilio, correo, celular FROM huesped";
 
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
+        try (PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Huesped huesped = new Huesped();
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                huesped.setDni(rs.getInt("dni"));                
+                huesped.setNombre(rs.getString("nombre"));
+                huesped.setDomicilio(rs.getString("domicilio"));
+                huesped.setCorreo(rs.getString("correo"));
+                huesped.setCelular(rs.getInt("celular"));
+                huesped.setEstado(true);
+                listaHuespedes.add(huesped);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Print the error details for debugging.
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
+        }
+        return listaHuespedes;
     }
-    return listaHuespedes;
-}
 
 }
 /* agregarHuesped(Huesped huesped)

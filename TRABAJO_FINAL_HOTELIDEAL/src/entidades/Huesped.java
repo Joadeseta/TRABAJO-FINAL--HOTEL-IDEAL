@@ -97,4 +97,10 @@ public class Huesped {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        String huesped = "Huesped [idHuesped=" + idHuesped + ", dni=" + dni + " , nombre=" + nombre + "]";
+        return huesped;
+    }
+
 }
