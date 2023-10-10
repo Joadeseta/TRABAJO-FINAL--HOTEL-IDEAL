@@ -23,6 +23,17 @@ public class Habitacion {
         this.estado = estado;
         this.tipoHabitacion = tipoHabitacion;
     }
+    
+    public Habitacion(int codigo, int numeroHabitacion, boolean estado, TipoHabitacion tipoHabitacion) {
+        this.codigo = codigo;
+        this.numeroHabitacion = numeroHabitacion;
+        this.estado = estado;
+        this.tipoHabitacion = tipoHabitacion;
+    }
+
+    public Habitacion() {
+    }
+    
 
     public int getIdHabitacion() {
         return idHabitacion;
@@ -48,7 +59,7 @@ public class Habitacion {
         this.numeroHabitacion = numeroHabitacion;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -120,4 +131,5 @@ public class Habitacion {
             this.precioNoche = precioNoche;
         }
     }
+    
 }    
