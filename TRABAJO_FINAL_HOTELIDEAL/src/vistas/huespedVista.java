@@ -5,15 +5,19 @@
  */
 package vistas;
 
+import accesoDatos.HuespedData;
+import entidades.Huesped;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joadz
  */
 public class huespedVista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form huespedVista
-     */
+    private final HuespedData hueData = new HuespedData();
+    private Huesped huespedActual = null;
+
     public huespedVista() {
         initComponents();
     }
@@ -35,19 +39,19 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jBGuardarAlumno = new javax.swing.JButton();
+        jBGuardarHuesped = new javax.swing.JButton();
         jBEliminarAlumno = new javax.swing.JButton();
         jBSalir3 = new javax.swing.JButton();
         jTextNumeroDNI = new javax.swing.JTextField();
         jTextDOMICILIOHUESPED = new javax.swing.JTextField();
-        jTextApellido = new javax.swing.JTextField();
+        jTextNOMBRE = new javax.swing.JTextField();
         jButtonBuscarPorDani = new javax.swing.JButton();
         jButtonBuscarPorId = new javax.swing.JButton();
         jTextIdHUESPED = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextCORREOHUESPED = new javax.swing.JTextField();
-        jTextCELULAR = new javax.swing.JTextField();
+        jTextCELULARHUESPED = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -90,12 +94,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Estado:");
 
-        jBGuardarAlumno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jBGuardarAlumno.setText("Guardar");
-        jBGuardarAlumno.setPreferredSize(new java.awt.Dimension(82, 25));
-        jBGuardarAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jBGuardarHuesped.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBGuardarHuesped.setText("Guardar");
+        jBGuardarHuesped.setPreferredSize(new java.awt.Dimension(82, 25));
+        jBGuardarHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBGuardarAlumnoActionPerformed(evt);
+                jBGuardarHuespedActionPerformed(evt);
             }
         });
 
@@ -137,9 +141,9 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Correo Electronico:");
 
-        jTextCELULAR.addActionListener(new java.awt.event.ActionListener() {
+        jTextCELULARHUESPED.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCELULARActionPerformed(evt);
+                jTextCELULARHUESPEDActionPerformed(evt);
             }
         });
 
@@ -160,8 +164,10 @@ public class huespedVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jRadioHUESPEDESACTIVOS.setBackground(new java.awt.Color(204, 255, 255));
         jRadioHUESPEDESACTIVOS.setText("Huespedes Activos");
 
+        jRadioHUESPEDESINACTIVOS.setBackground(new java.awt.Color(204, 255, 255));
         jRadioHUESPEDESINACTIVOS.setText("Huespedes Inactivos");
         jRadioHUESPEDESINACTIVOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,9 +219,9 @@ public class huespedVista extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextCORREOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextDOMICILIOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextCELULAR, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextCELULARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(83, 83, 83))
                                 .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                     .addGap(48, 48, 48)
@@ -225,10 +231,10 @@ public class huespedVista extends javax.swing.JInternalFrame {
                             .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(43, 43, 43)
+                                    .addGap(37, 37, 37)
                                     .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -254,7 +260,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                     .addComponent(jButtonBuscarPorId))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -266,7 +272,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCELULAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextCELULARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +290,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -311,49 +317,56 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
 
         limpiarCampos();
-        alumnoActual = null;
+        huespedActual = null;
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
+    private void limpiarCampos() {
+        jTextNumeroDNI.setText("");
+        jTextNOMBRE.setText("");
+        jTextIdHUESPED.setText("");
+        jTextDOMICILIOHUESPED.setText("");
+        jTextCELULARHUESPED.setText("");
+        jTextCORREOHUESPED.setText("");
+        jRadioESTADOHUESPED.setSelected(false);
+    }
 
-    private void jBGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarAlumnoActionPerformed
+
+    private void jBGuardarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarHuespedActionPerformed
 
         try {
             /*Obtener los datos de los campos*/
             Integer dni = Integer.parseInt(jTextNumeroDNI.getText());
-            String nombre = jTextDOMICILIOHUESPED.getText();
-            String apellido = jTextApellido.getText();
+            /* Integer idHuesped = Integer.parseInt(jTextIdHUESPED.getText());*/
+            String nombre = jTextNOMBRE.getText();
+            String domicilio = jTextDOMICILIOHUESPED.getText();
+            String correo = jTextCORREOHUESPED.getText();
+            Integer celular = Integer.parseInt(jTextCELULARHUESPED.getText());
+            boolean estado = jRadioESTADOHUESPED.isSelected();
 
-            // Validar los datos de entrada
-            if (dni <= 0 || nombre.isEmpty() || apellido.isEmpty()) {
+            if (dni <= 0 || nombre.isEmpty() || domicilio.isEmpty() || correo.isEmpty() || celular <= 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese datos válidos en todos los campos obligatorios.");
                 return;
             }
-            // Obtener la fecha de nacimiento
-            java.util.Date fecha = jDateFechaNacimiento.getDate();
-            LocalDate fecha2 = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            // Obtener el estado
-            Boolean estado = jRadioESTADOHUESPED.isSelected();
-
-            if (alumnoActual == null) {
+            if (huespedActual == null) {
                 // Crear un nuevo alumno
-                alumnoActual = new Alumnos(dni, nombre, apellido, fecha2, estado);
-                aluData.guardarAlumno(alumnoActual);
+                huespedActual = new Huesped(nombre, dni, domicilio, correo, celular, estado);
+                hueData.agregarHuesped(huespedActual);
                 JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente.");
 
             } else {
 
-                alumnoActual.setDni(dni);
-                alumnoActual.setNombre(nombre);
-                alumnoActual.setApellido(apellido);
-                alumnoActual.setFechaNacimiento(fecha2);
-                aluData.modificarAlumno(alumnoActual);
-                alumnoActual.setActivo(estado);
-                aluData.modificarAlumno(alumnoActual);
-                JOptionPane.showMessageDialog(this, "Alumno modificado exitosamente.");
+                huespedActual.setDni(dni);
+                huespedActual.setNombre(nombre);
+                huespedActual.setDomicilio(domicilio);
+                huespedActual.setCorreo(correo);
+                huespedActual.setCelular(celular);
+                huespedActual.setEstado(estado);
+                ;
+                JOptionPane.showMessageDialog(this, "Huesped guardado exitosamente.");
             }
             // Limpiar los campos y establecer alumnoActual a null
             limpiarCampos();
-            alumnoActual = null;
+            huespedActual = null;
 
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo DNI.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -361,7 +374,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error al guardar o modificar al alumno: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-    }//GEN-LAST:event_jBGuardarAlumnoActionPerformed
+    }//GEN-LAST:event_jBGuardarHuespedActionPerformed
 
     private void jBEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAlumnoActionPerformed
         if (alumnoActual != null) {
@@ -415,7 +428,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
             if (alumnoActual != null) {
                 // Actualiza los campos de la interfaz con los datos del alumno
                 jTextIdHUESPED.setText(Integer.toString(alumnoActual.getIdAlumno()));
-                jTextApellido.setText(alumnoActual.getApellido());
+                jTextNOMBRE.setText(alumnoActual.getApellido());
                 jTextDOMICILIOHUESPED.setText(alumnoActual.getNombre());
 
                 LocalDate lc = alumnoActual.getFechaNacimiento();
@@ -442,7 +455,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
 
             if (alumnoActual != null) {
                 /*El alumno se encontró en la base de datos, actualiza los campos*/
-                jTextApellido.setText(alumnoActual.getApellido());
+                jTextNOMBRE.setText(alumnoActual.getApellido());
                 jTextDOMICILIOHUESPED.setText(alumnoActual.getNombre());
                 jTextNumeroDNI.setText(Integer.toString(alumnoActual.getDni())); // Convierte el DNI a String
 
@@ -464,9 +477,9 @@ public class huespedVista extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonBuscarPorIdActionPerformed
 
-    private void jTextCELULARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCELULARActionPerformed
+    private void jTextCELULARHUESPEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCELULARHUESPEDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextCELULARActionPerformed
+    }//GEN-LAST:event_jTextCELULARHUESPEDActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -480,7 +493,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLAlumno;
     private javax.swing.JButton jBEliminarAlumno;
-    private javax.swing.JButton jBGuardarAlumno;
+    private javax.swing.JButton jBGuardarHuesped;
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jBSalir3;
     private javax.swing.JButton jButton1;
@@ -499,11 +512,11 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioHUESPEDESACTIVOS;
     private javax.swing.JRadioButton jRadioHUESPEDESINACTIVOS;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextApellido;
-    private javax.swing.JTextField jTextCELULAR;
+    private javax.swing.JTextField jTextCELULARHUESPED;
     private javax.swing.JTextField jTextCORREOHUESPED;
     private javax.swing.JTextField jTextDOMICILIOHUESPED;
     private javax.swing.JTextField jTextIdHUESPED;
+    private javax.swing.JTextField jTextNOMBRE;
     private javax.swing.JTextField jTextNumeroDNI;
     // End of variables declaration//GEN-END:variables
 }

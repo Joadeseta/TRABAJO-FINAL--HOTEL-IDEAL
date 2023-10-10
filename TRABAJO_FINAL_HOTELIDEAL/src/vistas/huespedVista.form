@@ -87,9 +87,9 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jTextCORREOHUESPED" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <Component id="jTextApellido" min="-2" pref="121" max="-2" attributes="0"/>
+                                          <Component id="jTextNOMBRE" min="-2" pref="121" max="-2" attributes="0"/>
                                           <Component id="jTextDOMICILIOHUESPED" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <Component id="jTextCELULAR" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                          <Component id="jTextCELULARHUESPED" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                                   </Group>
@@ -103,10 +103,10 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jBLimpiarCampos" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Component id="jBEliminarAlumno" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Component id="jBGuardarAlumno" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Component id="jBGuardarHuesped" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jBSalir3" min="-2" pref="76" max="-2" attributes="0"/>
                                   </Group>
@@ -142,7 +142,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextNOMBRE" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -157,7 +157,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextCELULAR" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextCELULARHUESPED" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -178,7 +178,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBLimpiarCampos" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBSalir3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBGuardarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBGuardarHuesped" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBEliminarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -257,7 +257,7 @@
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBGuardarAlumno">
+        <Component class="javax.swing.JButton" name="jBGuardarHuesped">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -268,7 +268,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarAlumnoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarHuespedActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBEliminarAlumno">
@@ -303,7 +303,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextDOMICILIOHUESPED">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextApellido">
+        <Component class="javax.swing.JTextField" name="jTextNOMBRE">
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBuscarPorDani">
           <Properties>
@@ -341,9 +341,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextCORREOHUESPED">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextCELULAR">
+        <Component class="javax.swing.JTextField" name="jTextCELULARHUESPED">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCELULARActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCELULARHUESPEDActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -389,11 +389,17 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioHUESPEDESACTIVOS">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Huespedes Activos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioHUESPEDESINACTIVOS">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Huespedes Inactivos"/>
           </Properties>
           <Events>
