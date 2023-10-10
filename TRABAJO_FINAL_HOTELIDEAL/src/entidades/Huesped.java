@@ -19,10 +19,6 @@ public class Huesped {
     private int celular;
     private boolean estado;
 
-    public Huesped() {
-
-    }
-
     public Huesped(String nombre, int dni, String domicilio, String correo, int celular, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
@@ -40,6 +36,9 @@ public class Huesped {
         this.correo = correo;
         this.celular = celular;
         this.estado = estado;
+    }
+
+    public Huesped() {
     }
 
     public int getIdHuesped() {
@@ -96,6 +95,12 @@ public class Huesped {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        String huesped = "Huesped [idHuesped=" + idHuesped + ", dni=" + dni + " , nombre=" + nombre + "]";
+        return huesped;
     }
 
 }
