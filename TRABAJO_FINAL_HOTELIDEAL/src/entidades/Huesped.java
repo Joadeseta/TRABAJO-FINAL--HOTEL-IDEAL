@@ -41,6 +41,8 @@ public class Huesped {
     public Huesped() {
     }
 
+    
+
     public int getIdHuesped() {
         return idHuesped;
     }

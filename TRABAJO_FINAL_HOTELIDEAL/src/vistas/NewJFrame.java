@@ -54,6 +54,11 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("ADMINISTRAR HUESPEDES");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenuADMINISTRARHUESPEDES.add(jMenuItem1);
 
         jMenuBar1.add(jMenuADMINISTRARHUESPEDES);
@@ -75,14 +80,18 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuADMINISTRARHUESPEDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHUESPEDESActionPerformed
-       
+
+
+    }//GEN-LAST:event_jMenuADMINISTRARHUESPEDESActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
         escritorio.removeAll();
         escritorio.repaint();
-         jMenuADMINISTRARHUESPEDES = new huespedVista();
-       jMenuADMINISTRARHUESPEDES.setVisible(true);
-        escritorio.add(jMenuADMINISTRARHUESPEDES);
-        
-    }//GEN-LAST:event_jMenuADMINISTRARHUESPEDESActionPerformed
+        huespedVista huesped = new huespedVista();
+        huesped.setVisible(true);
+        escritorio.add(huesped);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

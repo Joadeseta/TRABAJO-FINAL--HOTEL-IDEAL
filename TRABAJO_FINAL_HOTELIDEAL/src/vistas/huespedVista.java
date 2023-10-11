@@ -40,12 +40,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jBGuardarHuesped = new javax.swing.JButton();
-        jBEliminarAlumno = new javax.swing.JButton();
+        jBELIMINARHUESPED = new javax.swing.JButton();
         jBSalir3 = new javax.swing.JButton();
         jTextNumeroDNI = new javax.swing.JTextField();
         jTextDOMICILIOHUESPED = new javax.swing.JTextField();
         jTextNOMBRE = new javax.swing.JTextField();
-        jButtonBuscarPorDani = new javax.swing.JButton();
+        jButtonBuscarPorDni = new javax.swing.JButton();
         jButtonBuscarPorId = new javax.swing.JButton();
         jTextIdHUESPED = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -103,12 +103,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBEliminarAlumno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jBEliminarAlumno.setText("Eliminar");
-        jBEliminarAlumno.setPreferredSize(new java.awt.Dimension(82, 25));
-        jBEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jBELIMINARHUESPED.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBELIMINARHUESPED.setText("Eliminar");
+        jBELIMINARHUESPED.setPreferredSize(new java.awt.Dimension(82, 25));
+        jBELIMINARHUESPED.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarAlumnoActionPerformed(evt);
+                jBELIMINARHUESPEDActionPerformed(evt);
             }
         });
 
@@ -121,10 +121,10 @@ public class huespedVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonBuscarPorDani.setText("Buscar");
-        jButtonBuscarPorDani.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscarPorDni.setText("Buscar");
+        jButtonBuscarPorDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarPorDaniActionPerformed(evt);
+                jButtonBuscarPorDniActionPerformed(evt);
             }
         });
 
@@ -198,7 +198,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                                     .addGap(149, 149, 149)
                                     .addComponent(jTextNumeroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButtonBuscarPorDani))
+                                    .addComponent(jButtonBuscarPorDni))
                                 .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                     .addGap(1, 1, 1)
                                     .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +232,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                                 .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(37, 37, 37)
-                                    .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBELIMINARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(41, 41, 41)
                                     .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,7 +252,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextNumeroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscarPorDani))
+                    .addComponent(jButtonBuscarPorDni))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -291,7 +291,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBELIMINARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -376,37 +376,37 @@ public class huespedVista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBGuardarHuespedActionPerformed
 
-    private void jBEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAlumnoActionPerformed
-        if (alumnoActual != null) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar este alumno?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+    private void jBELIMINARHUESPEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBELIMINARHUESPEDActionPerformed
+        if (huespedActual != null) {
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar este Huesped?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 try {
                     // Intenta eliminar al alumno
-                    aluData.eliminarAlumno(alumnoActual.getIdAlumno());
+                    hueData.eliminaHuesped(huespedActual.getIdHuesped());
 
                     // Limpia los campos y establece alumnoActual a null
                     limpiarCampos();
-                    alumnoActual = null;
+                    huespedActual = null;
 
-                    JOptionPane.showMessageDialog(this, "Alumno eliminado exitosamente.");
+                    JOptionPane.showMessageDialog(this, "Huesped eliminado exitosamente.");
                 } catch (Exception e) {
                     // Maneja las excepciones que puedan ocurrir durante la eliminación
-                    JOptionPane.showMessageDialog(this, "Error al eliminar al alumno: ");
+                    JOptionPane.showMessageDialog(this, "Error al eliminar al huesped: ");
                 }
             }
         } else {
-            // Muestra un mensaje de advertencia si no se ha seleccionado un alumno
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún alumno para eliminar.");
+            // Muestra un mensaje de advertencia si no se ha seleccionado un huesped
+            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún huesped para eliminar.");
         }
 
-    }//GEN-LAST:event_jBEliminarAlumnoActionPerformed
+    }//GEN-LAST:event_jBELIMINARHUESPEDActionPerformed
 
     private void jBSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalir3ActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalir3ActionPerformed
 
-    private void jButtonBuscarPorDaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorDaniActionPerformed
+    private void jButtonBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorDniActionPerformed
 
         try {
             // Obtiene el DNI ingresado como texto desde jTextNumeroDNI
@@ -422,20 +422,16 @@ public class huespedVista extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(dniText);
 
             // Busca al alumno por DNI en la base de datos
-            alumnoActual = aluData.buscarAlumnoPorDni(dni);
+            huespedActual = hueData.buscarPorDni(dni);
 
             // Verifica si se encontró al alumno
-            if (alumnoActual != null) {
+            if (huespedActual != null) {
                 // Actualiza los campos de la interfaz con los datos del alumno
-                jTextIdHUESPED.setText(Integer.toString(alumnoActual.getIdAlumno()));
-                jTextNOMBRE.setText(alumnoActual.getApellido());
-                jTextDOMICILIOHUESPED.setText(alumnoActual.getNombre());
-
-                LocalDate lc = alumnoActual.getFechaNacimiento();
-                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                jDateFechaNacimiento.setDate(date);
-
-                jRadioESTADOHUESPED.setSelected(alumnoActual.isActivo());
+                jTextIdHUESPED.setText(Integer.toString(huespedActual.getIdHuesped()));
+                jTextNOMBRE.setText(huespedActual.getNombre());
+                jTextCELULARHUESPED.setText(Integer.toString(huespedActual.getCelular()));
+                jTextDOMICILIOHUESPED.setText(huespedActual.getDomicilio());
+                jRadioESTADOHUESPED.setSelected(huespedActual.isEstado());
             } else {
                 // El alumno no se encontró en la base de datos
                 JOptionPane.showMessageDialog(this, "No se encontró ningún alumno con ese DNI.");
@@ -446,25 +442,21 @@ public class huespedVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo de DNI.");
         }
 
-    }//GEN-LAST:event_jButtonBuscarPorDaniActionPerformed
+    }//GEN-LAST:event_jButtonBuscarPorDniActionPerformed
 
     private void jButtonBuscarPorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorIdActionPerformed
         try {
-            int NumAlumno = Integer.parseInt(jTextIdHUESPED.getText());
-            alumnoActual = aluData.buscarAlumno(NumAlumno);
+            int numHuesped = Integer.parseInt(jTextIdHUESPED.getText());
+            huespedActual = hueData.buscarHuesped(numHuesped);
 
-            if (alumnoActual != null) {
-                /*El alumno se encontró en la base de datos, actualiza los campos*/
-                jTextNOMBRE.setText(alumnoActual.getApellido());
-                jTextDOMICILIOHUESPED.setText(alumnoActual.getNombre());
-                jTextNumeroDNI.setText(Integer.toString(alumnoActual.getDni())); // Convierte el DNI a String
-
-                LocalDate lc = alumnoActual.getFechaNacimiento();
-                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                jDateFechaNacimiento.setDate(date);
-
-                jRadioESTADOHUESPED.setSelected(alumnoActual.isActivo());
+            if (huespedActual != null) {
+                
+                jTextIdHUESPED.setText(Integer.toString(huespedActual.getDni()));
+                jTextNOMBRE.setText(huespedActual.getNombre());
+                jTextCELULARHUESPED.setText(Integer.toString(huespedActual.getCelular()));
+                jTextDOMICILIOHUESPED.setText(huespedActual.getDomicilio());
+                 jTextCORREOHUESPED.setText(huespedActual.getCorreo());
+                jRadioESTADOHUESPED.setSelected(huespedActual.isEstado());
             } else {
                 // Manejar el caso en que no se encuentre ningún alumno
                 JOptionPane.showMessageDialog(this, "No se encontró ningún alumno con ese número.");
@@ -492,12 +484,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLAlumno;
-    private javax.swing.JButton jBEliminarAlumno;
+    private javax.swing.JButton jBELIMINARHUESPED;
     private javax.swing.JButton jBGuardarHuesped;
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jBSalir3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonBuscarPorDani;
+    private javax.swing.JButton jButtonBuscarPorDni;
     private javax.swing.JButton jButtonBuscarPorId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
