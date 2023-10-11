@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
  * @author joadz
  */
 public class huespedVista extends javax.swing.JInternalFrame {
-
+    
     private final HuespedData hueData = new HuespedData();
     private Huesped huespedActual = null;
-
+    
     public huespedVista() {
         initComponents();
     }
@@ -315,7 +315,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioESTADOHUESPEDActionPerformed
 
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
-
+        
         limpiarCampos();
         huespedActual = null;
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
@@ -328,33 +328,34 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jTextCORREOHUESPED.setText("");
         jRadioESTADOHUESPED.setSelected(false);
     }
-
+    
 
     private void jBGuardarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarHuespedActionPerformed
-
+        
         try {
             /*Obtener los datos de los campos*/
-            Integer dni = Integer.parseInt(jTextNumeroDNI.getText());
+            String dniS = jTextNumeroDNI.getText();
             /* Integer idHuesped = Integer.parseInt(jTextIdHUESPED.getText());*/
             String nombre = jTextNOMBRE.getText();
             String domicilio = jTextDOMICILIOHUESPED.getText();
             String correo = jTextCORREOHUESPED.getText();
             Integer celular = Integer.parseInt(jTextCELULARHUESPED.getText());
             boolean estado = jRadioESTADOHUESPED.isSelected();
-
+            int dni = Integer.parseInt(dniS);
+            
             if (dni <= 0 || nombre.isEmpty() || domicilio.isEmpty() || correo.isEmpty() || celular <= 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese datos válidos en todos los campos obligatorios.");
                 return;
             }
-
+            
             if (huespedActual == null) {
                 // Crear un nuevo alumno
                 huespedActual = new Huesped(nombre, dni, domicilio, correo, celular, estado);
                 hueData.agregarHuesped(huespedActual);
-                JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente.");
-
+                JOptionPane.showMessageDialog(this, "huesped guardado exitosamente.");
+                
             } else {
-
+                
                 huespedActual.setDni(dni);
                 huespedActual.setNombre(nombre);
                 huespedActual.setDomicilio(domicilio);
@@ -367,19 +368,19 @@ public class huespedVista extends javax.swing.JInternalFrame {
             // Limpiar los campos y establecer alumnoActual a null
             limpiarCampos();
             huespedActual = null;
-
+            
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo DNI.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar o modificar al alumno: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
+            
         }
     }//GEN-LAST:event_jBGuardarHuespedActionPerformed
 
     private void jBELIMINARHUESPEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBELIMINARHUESPEDActionPerformed
         if (huespedActual != null) {
             int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar este Huesped?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-
+            
             if (confirmacion == JOptionPane.YES_OPTION) {
                 try {
                     // Intenta eliminar al alumno
@@ -388,7 +389,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                     // Limpia los campos y establece alumnoActual a null
                     limpiarCampos();
                     huespedActual = null;
-
+                    
                     JOptionPane.showMessageDialog(this, "Huesped eliminado exitosamente.");
                 } catch (Exception e) {
                     // Maneja las excepciones que puedan ocurrir durante la eliminación
@@ -407,7 +408,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalir3ActionPerformed
 
     private void jButtonBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorDniActionPerformed
-
+        
         try {
             // Obtiene el DNI ingresado como texto desde jTextNumeroDNI
             String dniText = jTextNumeroDNI.getText();
@@ -436,7 +437,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 // El alumno no se encontró en la base de datos
                 JOptionPane.showMessageDialog(this, "No se encontró ningún alumno con ese DNI.");
             }
-
+            
         } catch (NumberFormatException nf) {
             // El usuario ingresó un valor no numérico en el campo de DNI
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo de DNI.");
@@ -448,14 +449,14 @@ public class huespedVista extends javax.swing.JInternalFrame {
         try {
             int numHuesped = Integer.parseInt(jTextIdHUESPED.getText());
             huespedActual = hueData.buscarHuesped(numHuesped);
-
+            
             if (huespedActual != null) {
                 
                 jTextIdHUESPED.setText(Integer.toString(huespedActual.getDni()));
                 jTextNOMBRE.setText(huespedActual.getNombre());
                 jTextCELULARHUESPED.setText(Integer.toString(huespedActual.getCelular()));
                 jTextDOMICILIOHUESPED.setText(huespedActual.getDomicilio());
-                 jTextCORREOHUESPED.setText(huespedActual.getCorreo());
+                jTextCORREOHUESPED.setText(huespedActual.getCorreo());
                 jRadioESTADOHUESPED.setSelected(huespedActual.isEstado());
             } else {
                 // Manejar el caso en que no se encuentre ningún alumno
@@ -464,7 +465,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
         } catch (NumberFormatException nf) {
             // El usuario ingresó un valor no numérico en el campo de "Nº Alumno", muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo de Nº Alumno");
-
+            
         }
 
     }//GEN-LAST:event_jButtonBuscarPorIdActionPerformed
