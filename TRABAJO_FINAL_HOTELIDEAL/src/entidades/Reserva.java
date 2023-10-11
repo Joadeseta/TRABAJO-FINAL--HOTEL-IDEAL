@@ -22,9 +22,10 @@ public class Reserva {
     
     // Constructor para crear una nueva Reserva (sin ID).
 
-    public Reserva(Huesped huesped, int codigo, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
+    public Reserva(Huesped huesped, int codigo, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
         this.huesped = huesped;
         this.codigo = codigo;
+        this.cantPersonas = cantPersonas;
         this.Fecha_entrada = Fecha_entrada;
         this.Fecha_salida = Fecha_salida;
         this.ImporteTotal = ImporteTotal;
@@ -43,7 +44,7 @@ public class Reserva {
         this.ImporteTotal = ImporteTotal;
         this.Estado = Estado;
     }
-    
+
     // Métodos getters y setters para acceder y modificar los atributos de la entidad.
     // Estos son utilizados para obtener y establecer valores en los objetos Reserva.
 
@@ -107,16 +108,16 @@ public class Reserva {
         return Estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.Estado = estado;
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
     }
-
+    
     // Método toString que devuelve una representación en texto de la Reserva.
     // En este caso, se muestra el ID de la Reserva, el codigo y la cantidad de personas.
 
     @Override
     public String toString() {
-        return "Reserva{" + "idReserva=" + idReserva + ", codigo=" + codigo + ", cantPersonas=" + cantPersonas + '}';
+        return "Reserva{" + "idReserva=" + idReserva + ", cantPersonas=" + cantPersonas + ", ImporteTotal=" + ImporteTotal + '}';
     }
     
 }
