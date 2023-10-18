@@ -22,45 +22,44 @@ import javax.swing.JOptionPane;
  */
 public class HuespedData {
 
-    private Connection con = null;
+   private Connection con = null;
 
     public HuespedData() {
         con = Conexion.getConexion();
         if (con == null) {
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
         }
-
     }
 
     public void agregarHuesped(Huesped huesped) {
-
-        String sql = "INSERT INTO huesped (nombre, dni, domicilio, correo, celular, estado) "
-                + "VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO huesped (nombre, dni, domicilio, correo, celular, estado) VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, huesped.getNombre());
             ps.setInt(2, huesped.getDni());
             ps.setString(3, huesped.getDomicilio());
             ps.setString(4, huesped.getCorreo());
             ps.setInt(5, huesped.getCelular());
             ps.setBoolean(6, huesped.isEstado());
-            ps.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
+            int filasAfectadas = ps.executeUpdate();
 
-            if (rs.next()) {
-                huesped.setIdHuesped(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Huesped agregado");
+            if (filasAfectadas == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    huesped.setIdHuesped(rs.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Huesped agregado");
+                }
             }
-            ps.close();
 
+            ps.close();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
         }
     }
 
     public void actualizarHuesped(Huesped huespedActualizado) {
-
         String sql = "UPDATE huesped SET nombre=?, dni=?, domicilio=?, correo=?, celular=?, estado=? WHERE idHuesped=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -71,14 +70,16 @@ public class HuespedData {
             ps.setInt(5, huespedActualizado.getCelular());
             ps.setBoolean(6, huespedActualizado.isEstado());
             ps.setInt(7, huespedActualizado.getIdHuesped());
+
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas == 1) {
                 JOptionPane.showMessageDialog(null, "Huesped actualizado");
             }
-            ps.close();
 
+            ps.close();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
         }
     }
@@ -92,18 +93,16 @@ public class HuespedData {
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas == 1) {
-                JOptionPane.showMessageDialog(null, "Se actualizo la base de datos correctamente");
+                JOptionPane.showMessageDialog(null, "Se actualizó la base de datos correctamente");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar alhuesped");
-
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar al huésped");
         }
-
     }
 
     public Huesped buscarHuesped(int idHuesped) {
-
-        String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM huesped WHERE idAlumno=?";
+        String sql = "SELECT dni, nombre, domicilio, correo, celular, estado FROM huesped WHERE idHuesped=?";
         Huesped huesped = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -113,23 +112,23 @@ public class HuespedData {
                 huesped = new Huesped();
                 huesped.setIdHuesped(idHuesped);
                 huesped.setDni(rs.getInt("dni"));
+                huesped.setNombre(rs.getString("nombre"));
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setCelular(rs.getInt("celular"));
                 huesped.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un alumno con ese ID");
+                JOptionPane.showMessageDialog(null, "No existe un huésped con ese ID");
             }
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al acceder a la tabla alumno");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
         }
         return huesped;
     }
 
     public Huesped buscarPorDni(int dni) {
-
-        String sql = "SELECT idHuesped , apellido, nombre, fechaNacimiento FROM huesped WHERE dni=?";
+        String sql = "SELECT idHuesped, nombre, domicilio, correo, celular, estado FROM huesped WHERE dni=?";
         Huesped huesped = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -137,34 +136,32 @@ public class HuespedData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 huesped = new Huesped();
-                huesped.setIdHuesped(dni);
-                huesped.setDni(rs.getInt("dni"));
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                huesped.setDni(dni);
+                huesped.setNombre(rs.getString("nombre"));
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setCelular(rs.getInt("celular"));
                 huesped.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un alumno con ese ID");
+                JOptionPane.showMessageDialog(null, "No existe un huésped con ese DNI");
             }
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al acceder a la tabla alumno");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
         }
         return huesped;
     }
 
     public ArrayList<Huesped> obtenerTodosLosHuespedes() {
-        
         ArrayList<Huesped> listaHuespedes = new ArrayList<>();
-        String sql = "SELECT idHuesped, dni, apellido, nombre, domicilio, correo, celular FROM huesped";
-
+        String sql = "SELECT idHuesped, dni, nombre, domicilio, correo, celular FROM huesped";
         try (PreparedStatement ps = con.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery()) {
-
+             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Huesped huesped = new Huesped();
                 huesped.setIdHuesped(rs.getInt("idHuesped"));
-                huesped.setDni(rs.getInt("dni"));                
+                huesped.setDni(rs.getInt("dni"));
                 huesped.setNombre(rs.getString("nombre"));
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
@@ -173,7 +170,7 @@ public class HuespedData {
                 listaHuespedes.add(huesped);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace(); // Print the error details for debugging.
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped");
         }
         return listaHuespedes;

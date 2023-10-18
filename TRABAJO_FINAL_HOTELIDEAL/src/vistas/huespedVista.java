@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,11 +19,15 @@ import javax.swing.JOptionPane;
  */
 public class huespedVista extends javax.swing.JInternalFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+
     private final HuespedData hueData = new HuespedData();
     private Huesped huespedActual = null;
 
     public huespedVista() {
         initComponents();
+        armarCabeceraTabla();
+        jtTODOSLOSHUESPEDES = new javax.swing.JTable();
     }
 
     /**
@@ -56,7 +61,6 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jTextCORREOHUESPED = new javax.swing.JTextField();
         jTextCELULARHUESPED = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButtonMOSTRARHUESPEDES = new javax.swing.JButton();
         jRadioHUESPEDESACTIVOS = new javax.swing.JRadioButton();
         jRadioHUESPEDESINACTIVOS = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -153,13 +157,6 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Celular:");
 
-        jButtonMOSTRARHUESPEDES.setText("LISTA DE HUESPEDES");
-        jButtonMOSTRARHUESPEDES.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMOSTRARHUESPEDESActionPerformed(evt);
-            }
-        });
-
         jRadioHUESPEDESACTIVOS.setBackground(new java.awt.Color(204, 255, 255));
         jRadioHUESPEDESACTIVOS.setText("Huespedes Activos");
 
@@ -208,7 +205,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -243,25 +240,25 @@ public class huespedVista extends javax.swing.JInternalFrame {
                                         .addComponent(jTextNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextDOMICILIOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextCELULARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(83, 83, 83))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                    .addGap(48, 48, 48)
-                                    .addComponent(jRadioHUESPEDESACTIVOS)
-                                    .addGap(101, 101, 101)
-                                    .addComponent(jRadioHUESPEDESINACTIVOS)))
+                                    .addGap(83, 83, 83)))
                             .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                                .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jBELIMINARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
+                                        .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jBELIMINARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jButtonMOSTRARHUESPEDES, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                        .addGap(103, 103, 103)
+                        .addComponent(jRadioHUESPEDESACTIVOS)
+                        .addGap(75, 75, 75)
+                        .addComponent(jRadioHUESPEDESINACTIVOS)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanelNOMBREHUESPEDLayout.setVerticalGroup(
             jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,21 +295,19 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jRadioESTADOHUESPED))
-                .addGap(30, 30, 30)
-                .addComponent(jButtonMOSTRARHUESPEDES)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioHUESPEDESACTIVOS)
                     .addComponent(jRadioHUESPEDESINACTIVOS))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBGuardarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBELIMINARHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -494,25 +489,39 @@ public class huespedVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCELULARHUESPEDActionPerformed
 
-    private void jButtonMOSTRARHUESPEDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMOSTRARHUESPEDESActionPerformed
+    private void armarCabeceraTabla() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+
+        filaCabecera.add("ID");
+        filaCabecera.add("Dni");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Celular");
+        filaCabecera.add("Estado");
+        filaCabecera.add("Domicilio");
+
+        for (Object columnHeader : filaCabecera) {
+            modelo.addColumn(columnHeader);
+        }
 
         ArrayList<Huesped> listaHuespedes = hueData.obtenerTodosLosHuespedes();
+        modelo.setRowCount(0);
 
-        // Luego puedes hacer lo que quieras con la lista de huéspedes.
-        // Por ejemplo, mostrarlos en una ventana o en un componente gráfico.
-        // También puedes iterar sobre la lista y mostrar los detalles en la consola.
+        // Iterar a través de la lista de huéspedes y agregarlos al modelo de tabla
         for (Huesped huesped : listaHuespedes) {
-            System.out.println("ID: " + huesped.getIdHuesped());
-            System.out.println("DNI: " + huesped.getDni());
-            System.out.println("Nombre: " + huesped.getNombre());
-            System.out.println("Domicilio: " + huesped.getDomicilio());
-            System.out.println("Correo: " + huesped.getCorreo());
-            System.out.println("Celular: " + huesped.getCelular());
+            Object[] fila = {
+                huesped.getIdHuesped(),
+                huesped.getDni(),
+                huesped.getNombre(),
+                huesped.getCelular(),
+                huesped.isEstado(),
+                huesped.getDomicilio()
+            };
+
+            modelo.addRow(fila);
         }
-    
 
-
-    }//GEN-LAST:event_jButtonMOSTRARHUESPEDESActionPerformed
+        jtTODOSLOSHUESPEDES.setModel(modelo);
+    }
 
     private void jRadioHUESPEDESINACTIVOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioHUESPEDESINACTIVOSActionPerformed
         // TODO add your handling code here:
@@ -527,7 +536,6 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBSalir3;
     private javax.swing.JButton jButtonBuscarPorDni;
     private javax.swing.JButton jButtonBuscarPorId;
-    private javax.swing.JButton jButtonMOSTRARHUESPEDES;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
