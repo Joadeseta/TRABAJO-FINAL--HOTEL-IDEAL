@@ -74,62 +74,12 @@ public class Habitacion {
     public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-
-    public class TipoHabitacion {
-    private int codigo;
-    private int cantPersonas;
-    private int cantCamas;
-    private String tipoCamas;
-    private double precioNoche;
-
-    // Constructor
-    public TipoHabitacion(int codigo, int cantPersonas, int cantCamas, String tipoCamas, double precioNoche) {
-        this.codigo = codigo;
-        this.cantPersonas = cantPersonas;
-        this.cantCamas = cantCamas;
-        this.tipoCamas = tipoCamas;
-        this.precioNoche = precioNoche;
-    }
-
-        public int getCodigo() {
-            return codigo;
-        }
-
-        public void setCodigo(int codigo) {
-            this.codigo = codigo;
-        }
-
-        public int getCantPersonas() {
-            return cantPersonas;
-        }
-
-        public void setCantPersonas(int cantPersonas) {
-            this.cantPersonas = cantPersonas;
-        }
-
-        public int getCantCamas() {
-            return cantCamas;
-        }
-
-        public void setCantCamas(int cantCamas) {
-            this.cantCamas = cantCamas;
-        }
-
-        public String getTipoCamas() {
-            return tipoCamas;
-        }
-
-        public void setTipoCamas(String tipoCamas) {
-            this.tipoCamas = tipoCamas;
-        }
-
-        public double getPrecioNoche() {
-            return precioNoche;
-        }
-
-        public void setPrecioNoche(double precioNoche) {
-            this.precioNoche = precioNoche;
-        }
-    }
     
+     @Override
+    public String toString() {
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", codigo=" + codigo + ", numero de habitacion=" + numeroHabitacion + ", estado" + estado + ", tipo de habitacion" + tipoHabitacion + '}';
+    }
 }    
+
+    
+    
