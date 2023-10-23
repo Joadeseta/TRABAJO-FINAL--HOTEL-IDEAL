@@ -6,7 +6,7 @@ package vistas;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-
+/*KKKKKKKKKKKK*/
 /**
  *
  * @author Alan
