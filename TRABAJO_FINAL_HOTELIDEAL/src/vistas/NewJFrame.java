@@ -31,6 +31,14 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuADMINISTRARHUESPEDES = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuADMINISTRARHABITACIONES = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        javax.swing.JMenu jMenuADMINISTRARTIPHAB = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuADMINISTRARRESERVA = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuADMINISTRARRESERVA1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,11 +50,11 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
 
         jMenuADMINISTRARHUESPEDES.setText("HUESPED");
-        jMenuADMINISTRARHUESPEDES.setPreferredSize(new java.awt.Dimension(120, 19));
+        jMenuADMINISTRARHUESPEDES.setPreferredSize(new java.awt.Dimension(130, 19));
         jMenuADMINISTRARHUESPEDES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuADMINISTRARHUESPEDESActionPerformed(evt);
@@ -62,6 +70,81 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuADMINISTRARHUESPEDES.add(jMenuItem1);
 
         jMenuBar1.add(jMenuADMINISTRARHUESPEDES);
+
+        jMenuADMINISTRARHABITACIONES.setText("HABITACIONES");
+        jMenuADMINISTRARHABITACIONES.setMaximumSize(new java.awt.Dimension(150, 50000));
+        jMenuADMINISTRARHABITACIONES.setPreferredSize(new java.awt.Dimension(140, 25));
+        jMenuADMINISTRARHABITACIONES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuADMINISTRARHABITACIONESActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setText("ADMINISTRAR HABITACIONES");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuADMINISTRARHABITACIONES.add(jMenuItem2);
+
+        jMenuBar1.add(jMenuADMINISTRARHABITACIONES);
+
+        jMenuADMINISTRARTIPHAB.setText("TIPO DE HABITACIONES");
+        jMenuADMINISTRARTIPHAB.setPreferredSize(new java.awt.Dimension(200, 19));
+        jMenuADMINISTRARTIPHAB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuADMINISTRARTIPHABActionPerformed(evt);
+            }
+        });
+
+        jMenuItem3.setText("ADMINISTRAR TIPO DE HABITACIONES");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuADMINISTRARTIPHAB.add(jMenuItem3);
+
+        jMenuBar1.add(jMenuADMINISTRARTIPHAB);
+
+        jMenuADMINISTRARRESERVA.setText("RESERVA");
+        jMenuADMINISTRARRESERVA.setMaximumSize(new java.awt.Dimension(150, 50000));
+        jMenuADMINISTRARRESERVA.setPreferredSize(new java.awt.Dimension(140, 25));
+        jMenuADMINISTRARRESERVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuADMINISTRARRESERVAActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("ADMINISTRAR RESERVA");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenuADMINISTRARRESERVA.add(jMenuItem4);
+
+        jMenuBar1.add(jMenuADMINISTRARRESERVA);
+
+        jMenuADMINISTRARRESERVA1.setText("SALIR");
+        jMenuADMINISTRARRESERVA1.setMaximumSize(new java.awt.Dimension(150, 50000));
+        jMenuADMINISTRARRESERVA1.setPreferredSize(new java.awt.Dimension(140, 25));
+        jMenuADMINISTRARRESERVA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuADMINISTRARRESERVA1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem5.setText("ADMINISTRAR RESERVA");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenuADMINISTRARRESERVA1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenuADMINISTRARRESERVA1);
 
         setJMenuBar(jMenuBar1);
 
@@ -79,19 +162,62 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuADMINISTRARHUESPEDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHUESPEDESActionPerformed
-
-
-    }//GEN-LAST:event_jMenuADMINISTRARHUESPEDESActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+
         escritorio.removeAll();
         escritorio.repaint();
         huespedVista huesped = new huespedVista();
         huesped.setVisible(true);
         escritorio.add(huesped);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuADMINISTRARHUESPEDESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHUESPEDESActionPerformed
+
+    }//GEN-LAST:event_jMenuADMINISTRARHUESPEDESActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuADMINISTRARHABITACIONESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHABITACIONESActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        HabitacionVista habitacion = new HabitacionVista();
+        habitacion.setVisible(true);
+        escritorio.add(habitacion);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuADMINISTRARHABITACIONESActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        tipohabitacionVista tipoHabitacion = new tipohabitacionVista();
+        tipoHabitacion.setVisible(true);
+        escritorio.add(tipoHabitacion);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuADMINISTRARTIPHABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARTIPHABActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuADMINISTRARTIPHABActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ReservaVista reserva = new ReservaVista();
+        reserva.setVisible(true);
+        escritorio.add(reserva);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuADMINISTRARRESERVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARRESERVAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuADMINISTRARRESERVAActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuADMINISTRARRESERVA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARRESERVA1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuADMINISTRARRESERVA1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,8 +256,15 @@ public class NewJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenuADMINISTRARHABITACIONES;
     private javax.swing.JMenu jMenuADMINISTRARHUESPEDES;
+    private javax.swing.JMenu jMenuADMINISTRARRESERVA;
+    private javax.swing.JMenu jMenuADMINISTRARRESERVA1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
