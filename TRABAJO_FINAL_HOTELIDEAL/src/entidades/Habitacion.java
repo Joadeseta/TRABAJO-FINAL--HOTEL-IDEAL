@@ -79,4 +79,8 @@ public class Habitacion {
     public String toString() {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", codigo=" + codigo + ", numero de habitacion=" + numeroHabitacion + ", estado" + estado + ", tipo de habitacion" + tipoHabitacion + '}';
     }
+
 }    
+
+}    
+
