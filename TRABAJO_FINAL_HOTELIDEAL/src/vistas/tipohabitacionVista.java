@@ -238,7 +238,7 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
                     .addComponent(jRBEstado))
                 .addGap(18, 18, 18)
                 .addComponent(jBListarTH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jRBHabAct)

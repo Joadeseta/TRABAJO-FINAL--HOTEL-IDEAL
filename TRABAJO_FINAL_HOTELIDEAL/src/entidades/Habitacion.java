@@ -80,6 +80,3 @@ public class Habitacion {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", codigo=" + codigo + ", numero de habitacion=" + numeroHabitacion + ", estado" + estado + ", tipo de habitacion" + tipoHabitacion + '}';
     }
 }    
-
-    
-    
