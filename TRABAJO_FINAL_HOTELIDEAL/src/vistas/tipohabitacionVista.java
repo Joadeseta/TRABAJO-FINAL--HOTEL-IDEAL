@@ -365,13 +365,7 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
             tiphab = tiphabdat.buscarTipoHabitacionPorCantPers(cantPers);
 
             if (tiphab != null) {
-                jTextField1.setText(Integer.toString(tiphab.getIdTipoHabitacion()));
-                jTextField2.setText(Integer.toString(tiphab.getCodigo()));
                 jTextField3.setText(Integer.toString(tiphab.getCapMaxima()));
-                jTextField4.setText(Integer.toString(tiphab.getCantCamas()));
-                jTextField5.setText(tiphab.getTipoCamas());
-                jTextField6.setText(Double.toString(tiphab.getPrecPorNoche()));
-                jRBEstado.setSelected(tiphab.isEstado());
                 cargarDatosPorCantPersonas();
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró ningún tipo de habitación con esa cantidad de personas.");
