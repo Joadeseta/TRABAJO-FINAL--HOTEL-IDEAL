@@ -50,7 +50,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
 
         jMenuADMINISTRARHUESPEDES.setText("HUESPED");
@@ -136,7 +136,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem5.setText("ADMINISTRAR RESERVA");
+        jMenuItem5.setText("SALIR");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -156,7 +156,9 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,7 +214,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuADMINISTRARRESERVAActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        salirVista salir = new salirVista();
+        salir.setVisible(true);
+        escritorio.add(salir);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuADMINISTRARRESERVA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARRESERVA1ActionPerformed

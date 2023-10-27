@@ -104,8 +104,10 @@ public class TipoHabitacion {
 
     @Override
     public String toString() {
-        return "TipoHabitacion{" + "idTipoHabitacion=" + idTipoHabitacion + ", codigo=" + codigo + ", capMaxima=" + capMaxima + ", tipoCamas=" + tipoCamas + '}';
-    }   
+        return "TipoHabitacion{" + "idTipoHabitacion=" + idTipoHabitacion + ", codigo=" + codigo + ", capMaxima=" + capMaxima + ", cantCamas=" + cantCamas + ", tipoCamas=" + tipoCamas + ", precPorNoche=" + precPorNoche + ", Estado=" + Estado + '}';
+    }
+
+     
     
     
 }

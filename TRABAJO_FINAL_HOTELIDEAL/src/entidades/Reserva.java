@@ -8,7 +8,7 @@ public class Reserva {
     
     private int idReserva;
     private Huesped huesped;
-    private int codigo;
+    private TipoHabitacion tiphab;
     private int cantPersonas;
     private LocalDate Fecha_entrada;
     private LocalDate Fecha_salida;
@@ -22,9 +22,21 @@ public class Reserva {
     
     // Constructor para crear una nueva Reserva (sin ID).
 
-    public Reserva(Huesped huesped, int codigo, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
+    public Reserva(Huesped huesped, TipoHabitacion tiphab, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
         this.huesped = huesped;
-        this.codigo = codigo;
+        this.tiphab = tiphab;
+        this.cantPersonas = cantPersonas;
+        this.Fecha_entrada = Fecha_entrada;
+        this.Fecha_salida = Fecha_salida;
+        this.ImporteTotal = ImporteTotal;
+        this.Estado = Estado;
+    }
+    // Constructor para crear una Reserva con un ID específico (normalmente desde la base de datos)
+
+    public Reserva(int idReserva, Huesped huesped, TipoHabitacion tiphab, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
+        this.idReserva = idReserva;
+        this.huesped = huesped;
+        this.tiphab = tiphab;
         this.cantPersonas = cantPersonas;
         this.Fecha_entrada = Fecha_entrada;
         this.Fecha_salida = Fecha_salida;
@@ -32,19 +44,6 @@ public class Reserva {
         this.Estado = Estado;
     }
     
-    // Constructor para crear una Reserva con un ID específico (normalmente desde la base de datos)
-
-    public Reserva(int idReserva, Huesped huesped, int codigo, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
-        this.idReserva = idReserva;
-        this.huesped = huesped;
-        this.codigo = codigo;
-        this.cantPersonas = cantPersonas;
-        this.Fecha_entrada = Fecha_entrada;
-        this.Fecha_salida = Fecha_salida;
-        this.ImporteTotal = ImporteTotal;
-        this.Estado = Estado;
-    }
-
     // Métodos getters y setters para acceder y modificar los atributos de la entidad.
     // Estos son utilizados para obtener y establecer valores en los objetos Reserva.
 
@@ -64,14 +63,14 @@ public class Reserva {
         this.huesped = huesped;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public TipoHabitacion getTiphab() {
+        return tiphab;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setTiphab(TipoHabitacion tiphab) {
+        this.tiphab = tiphab;
     }
-
+    
     public int getCantPersonas() {
         return cantPersonas;
     }
