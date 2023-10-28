@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package accesoDatos;
 
 import entidades.Habitacion;
@@ -13,20 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * 
-
-   
- * @author Alan
- */
 public class habitacionData {
-
-    private int id;
-    private int numero;
-    private int piso;
-    private int estado;
-    private String tipoHabitacion;
 
     private Connection con = null;
 
@@ -34,27 +17,27 @@ public class habitacionData {
         this.con = Conexion.getConexion();
     }
 
-    public void GuardarHabitacion(Habitacion habitacion) throws SQLException {
-        String sql = "INSERT INTO habitaciones (codigo, numero_habitacion, estado)" + "VALUES(?,?,?)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, habitacion.getCodigo());
-            ps.setInt(2, habitacion.getNumeroHabitacion());
-            ps.setBoolean(3, habitacion.getEstado());
-            ps.executeUpdate();
+    public void GuardarHabitacion(Habitacion habitacion) {
+    String sql = "INSERT INTO habitaciones (idHabitacion, codigo, numero_habitacion, estado) VALUES (?,?,?,?)";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, habitacion.getIdHabitacion());  
+        ps.setInt(2, habitacion.getCodigo());
+        ps.setInt(3, habitacion.getNumeroHabitacion());
+        ps.setBoolean(4, habitacion.getEstado());
+        ps.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
+        ResultSet rs = ps.getGeneratedKeys();
 
-            if (rs.next()) {
-                habitacion.setIdHabitacion(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Habitacion Agregada Exitosamente.");
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia.");
+        if (rs.next()) {
+            habitacion.setIdHabitacion(rs.getInt(1));
+            JOptionPane.showMessageDialog(null, "Habitación Agregada Exitosamente.");
         }
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al guardar la habitación: " + ex.getMessage());
     }
+}
 
     public void ModificarHabitacion(Habitacion habitacion) {
         String sql = "UPDATE habitaciones Set numero_habitacion = ?Set estado WHERE idHabitacion=?";
@@ -100,10 +83,10 @@ public class habitacionData {
                 habitacion.setNumeroHabitacion(numeroHabitacion);
                 habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
                 habitacion.setCodigo(rs.getInt("codigo"));
-                habitacion.setEstado(true);
+                habitacion.setEstado(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe la habitacion con el ID ingresado.");
+                JOptionPane.showMessageDialog(null, "No existe la habitacion con número ingresado.");
             }
             ps.close();
 
@@ -124,7 +107,7 @@ public class habitacionData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla.");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la habitacion.");
         }
     }
 
@@ -177,8 +160,8 @@ public class habitacionData {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
                 habitacion.setCodigo(rs.getInt("codigo"));
-                habitacion.setNumeroHabitacion(rs.getInt("numero_habitacion"));                
-                habitacion.setEstado(true);
+                habitacion.setNumeroHabitacion(rs.getInt("numero_habitacion"));
+                habitacion.setEstado(rs.getBoolean("estado"));
                 listaHabitaciones.add(habitacion);
             }
         } catch (SQLException ex) {
@@ -187,5 +170,4 @@ public class habitacionData {
         }
         return listaHabitaciones;
     }
-
 }
