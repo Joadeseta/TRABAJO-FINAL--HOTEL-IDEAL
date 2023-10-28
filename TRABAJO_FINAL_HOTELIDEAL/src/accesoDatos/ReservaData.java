@@ -3,6 +3,7 @@ package accesoDatos;
 import entidades.Reserva;
 import accesoDatos.HuespedData;
 import entidades.Huesped;
+import entidades.TipoHabitacion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,6 +21,7 @@ public class ReservaData {
     
     private Connection con = null;
     private HuespedData hd = new HuespedData();
+    private TipoHabitacionData thd = new TipoHabitacionData();
     
     public ReservaData() {
 
@@ -33,7 +35,7 @@ public class ReservaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, resv.getHuesped().getIdHuesped());
-            ps.setInt(2, resv.getCodigo());
+            ps.setInt(2, resv.getTiphab().getCodigo());
             ps.setInt(3, resv.getCantPersonas());
             ps.setDate(4, Date.valueOf(resv.getFecha_entrada()));
             ps.setDate(5, Date.valueOf(resv.getFecha_salida()));
@@ -53,13 +55,15 @@ public class ReservaData {
             
     public void actualizarReserva(Reserva resv) {
 
-        String sql = "UPDATE reserva SET cantPersonas = ?, Fecha_entrada = ?, Fecha_salida = ?, ImporteTotal = ? WHERE idReserva = ?";
+        String sql = "UPDATE reserva SET codigo = ?, cantPersonas = ?, Fecha_entrada = ?, Fecha_salida = ?, ImporteTotal = ? WHERE idReserva = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(2, resv.getCantPersonas());
-            ps.setDate(3, Date.valueOf(resv.getFecha_entrada()));
-            ps.setDate(4, Date.valueOf(resv.getFecha_salida()));
-            ps.setDouble(5, resv.getImporteTotal());
+            ps.setInt(2, resv.getHuesped().getIdHuesped());
+            ps.setInt(3, resv.getTiphab().getCodigo());
+            ps.setInt(4, resv.getCantPersonas());
+            ps.setDate(5, Date.valueOf(resv.getFecha_entrada()));
+            ps.setDate(6, Date.valueOf(resv.getFecha_salida()));
+            ps.setDouble(7, resv.getImporteTotal());
             int filas = ps.executeUpdate();
             if(filas>0){
                 JOptionPane.showMessageDialog(null, "Reserva actualizada.");
@@ -113,7 +117,8 @@ public class ReservaData {
                 resv.setIdReserva(id);
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
@@ -142,7 +147,8 @@ public class ReservaData {
                 resv.setIdReserva(id);
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
@@ -171,7 +177,8 @@ public class ReservaData {
                 resv.setIdReserva(id);
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
@@ -200,7 +207,8 @@ public class ReservaData {
                 resv.setIdReserva(id);
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
@@ -228,7 +236,8 @@ public class ReservaData {
                 resv.setIdReserva(rs.getInt("idReserva"));
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
@@ -254,7 +263,8 @@ public class ReservaData {
                 resv.setIdReserva(rs.getInt("idReserva"));
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
-                resv.setCodigo(rs.getInt("codigo"));
+                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
+                resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());

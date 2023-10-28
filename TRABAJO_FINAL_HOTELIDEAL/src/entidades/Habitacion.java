@@ -4,10 +4,7 @@
  */
 package entidades;
 
-/**
- *
- * @author Alan
- */
+
 public class Habitacion {
     private int idHabitacion;
     private int codigo;
@@ -80,7 +77,11 @@ public class Habitacion {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", codigo=" + codigo + ", numero de habitacion=" + numeroHabitacion + ", estado" + estado + ", tipo de habitacion" + tipoHabitacion + '}';
     }
 
-}    
+   
+
 
     
+
+}   
+
 
