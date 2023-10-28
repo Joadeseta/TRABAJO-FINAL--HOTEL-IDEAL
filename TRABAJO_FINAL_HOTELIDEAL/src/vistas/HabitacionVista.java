@@ -278,33 +278,37 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Ingrese el tipo de habitación.");
                 return;
             }
-
+            int tipoHabitInt = Integer.parseInt(tipoHabit);
+            if (tipoHabitInt < 1 || tipoHabitInt > 3) {
+                JOptionPane.showMessageDialog(this, "Ingrese el codigo o tipo de habitación entre 1 y 3.");
+                return;
+            }
             if (habitacionActual == null) {
                 // Crear una nueva habitación
-                Habitacion habitacionActual = new Habitacion();
-                habitacionActual.setTipoHabitacion(this.tipoHabitacion);
-                habitacionActual.setNumeroHabitacion(numeroHabitacion);
-                habitacionActual.setEstado(estado);
+                Habitacion nuevaHabitacion = new Habitacion();
+                nuevaHabitacion.setTipoHabitacion(this.tipoHabitacion);
+                nuevaHabitacion.setNumeroHabitacion(numeroHabitacion);
+                nuevaHabitacion.setEstado(estado);
 
-                // Aquí deberías agregar la lógica para guardar la habitación en la base de datos.
-                // habitacionData.guardarHabitacion(habitacionActual);
+                habitacionData.GuardarHabitacion(nuevaHabitacion);
+
                 JOptionPane.showMessageDialog(this, "Habitación guardada exitosamente.");
             } else {
+
                 // Actualizar la habitación existente
                 habitacionActual.setTipoHabitacion(tipoHabitacion);
                 habitacionActual.setNumeroHabitacion(numeroHabitacion);
                 habitacionActual.setEstado(estado);
 
-                // Aquí deberías agregar la lógica para actualizar la habitación en la base de datos.
-                // habitacionData.actualizarHabitacion(habitacionActual);
+                habitacionData.ModificarHabitacion(habitacionActual);
+
                 JOptionPane.showMessageDialog(this, "Habitación actualizada exitosamente.");
             }
 
-            // Limpiar los campos y establecer habitacionActual a null
             limpiarCampos();
             habitacionActual = null;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo Número de Habitación.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar o modificar la habitación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -334,21 +338,16 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
             // Muestra un mensaje de advertencia si no se ha seleccionado un huesped
             JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna habitacion para inhabilitar.");
         }
-        
+
     }//GEN-LAST:event_jBELIMINARHABITACIONActionPerformed
-    
-    
-    
 
     private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
 
         filaCabecera.add("ID");
-        filaCabecera.add("Dni");
-        filaCabecera.add("Nombre");
-        filaCabecera.add("Celular");
+        filaCabecera.add("Codigo de la Habitación");
+        filaCabecera.add("Numero de Habitación");
         filaCabecera.add("Estado");
-        filaCabecera.add("Domicilio");
 
         for (Object columnHeader : filaCabecera) {
             modelo.addColumn(columnHeader);
@@ -369,6 +368,27 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         }
 
         jtTODASLASHABITACIONES.setModel(modelo);
+    }
+
+    private String obtenerTipoHabitacion(int codigo) {
+        String tipoHabitacion;
+
+        switch (codigo) {
+            case 1:
+                tipoHabitacion = "Tipo 1/Simple/1 Persona ";
+                break;
+            case 2:
+                tipoHabitacion = "Tipo 2/Doble/2 Personas";
+                break;
+            case 3:
+                tipoHabitacion = "Tipo 3/Triple/2 Personas";
+                break;
+            default:
+                tipoHabitacion = "Desconocido";
+                break;
+        }
+
+        return tipoHabitacion;
     }
     private void jBSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalir3ActionPerformed
         dispose();

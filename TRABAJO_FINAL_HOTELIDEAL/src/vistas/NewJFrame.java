@@ -178,15 +178,15 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuADMINISTRARHUESPEDESActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuADMINISTRARHABITACIONESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHABITACIONESActionPerformed
-        escritorio.removeAll();
+       escritorio.removeAll();
         escritorio.repaint();
         HabitacionVista habitacion = new HabitacionVista();
         habitacion.setVisible(true);
-        escritorio.add(habitacion);        // TODO add your handling code here:
+        escritorio.add(habitacion);  
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuADMINISTRARHABITACIONESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuADMINISTRARHABITACIONESActionPerformed
+              // TODO add your handling code here:
     }//GEN-LAST:event_jMenuADMINISTRARHABITACIONESActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
