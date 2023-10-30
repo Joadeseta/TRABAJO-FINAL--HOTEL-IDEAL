@@ -190,6 +190,56 @@ public class TipoHabitacionData {
         return tiphab;
     }
     
+    public ArrayList<TipoHabitacion> listarTipoHabitacionActivas() {
+        
+        ArrayList<TipoHabitacion> tiphab = new ArrayList<>();
+        String sql = "SELECT idTipoHabitacion, codigo, cantPersonas, cantCamas, tipoCamas, precioNoche FROM tipodehabitacion WHERE Estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                TipoHabitacion tphb = new TipoHabitacion();
+                tphb.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                tphb.setCodigo(rs.getInt("codigo"));
+                tphb.setCapMaxima(rs.getInt("cantPersonas"));
+                tphb.setCantCamas(rs.getInt("cantCamas"));
+                tphb.setTipoCamas(rs.getString("tipoCamas"));
+                tphb.setPrecPorNoche(rs.getDouble("precioNoche"));
+                tphb.setEstado(true);
+                tiphab.add(tphb);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de tipos de habitación.");
+        }
+        return tiphab;
+    }
+    
+    public ArrayList<TipoHabitacion> listarTipoHabitacionInactivas() {
+        
+        ArrayList<TipoHabitacion> tiphab = new ArrayList<>();
+        String sql = "SELECT idTipoHabitacion, codigo, cantPersonas, cantCamas, tipoCamas, precioNoche FROM tipodehabitacion WHERE Estado = 0";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                TipoHabitacion tphb = new TipoHabitacion();
+                tphb.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                tphb.setCodigo(rs.getInt("codigo"));
+                tphb.setCapMaxima(rs.getInt("cantPersonas"));
+                tphb.setCantCamas(rs.getInt("cantCamas"));
+                tphb.setTipoCamas(rs.getString("tipoCamas"));
+                tphb.setPrecPorNoche(rs.getDouble("precioNoche"));
+                tphb.setEstado(false);
+                tiphab.add(tphb);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de tipos de habitación.");
+        }
+        return tiphab;
+    }
+    
     public List<TipoHabitacion> listarTipoHabitacionPorID(int idTipoHabitacion) {
         
         ArrayList<TipoHabitacion> tiphab = new ArrayList<>();

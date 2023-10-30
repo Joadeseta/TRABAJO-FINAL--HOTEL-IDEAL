@@ -31,7 +31,7 @@ public class ReservaData {
     
     public void agregarReserva (Reserva resv){
     
-        String sql="INSERT INTO reserva (idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql="INSERT INTO reserva (idReserva, idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, resv.getHuesped().getIdHuesped());
@@ -104,9 +104,9 @@ public class ReservaData {
         }
     }
     
-    public Reserva buscarReservaActivaPorId (int id){
+    public Reserva buscarReservaPorIdReserva (int id){
         
-        String sql = "SELECT idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado FROM tipodehabitacion WHERE idReserva = ? AND Estado = 1";
+        String sql = "SELECT idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado FROM reserva WHERE idReserva = ? AND Estado = ?";
         Reserva resv = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -123,9 +123,9 @@ public class ReservaData {
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
                 resv.setImporteTotal(rs.getDouble("ImporteTotal"));
-                resv.setEstado(true);
+                resv.setEstado(rs.getBoolean("Estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID.");
+                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID de reserva.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -134,9 +134,9 @@ public class ReservaData {
         return resv;
     }
     
-    public Reserva buscarReservaInactivaPorId (int id){
+    public Reserva buscarReservaPorIdHuesped (int id){
         
-        String sql = "SELECT idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado FROM tipodehabitacion WHERE idReserva = ? AND Estado = 0";
+        String sql = "SELECT idReserva, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado FROM reserva WHERE idHuesped = ? AND Estado = ?";
         Reserva resv = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -144,8 +144,8 @@ public class ReservaData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 resv = new Reserva();
-                resv.setIdReserva(id);
-                Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
+                resv.setIdReserva(rs.getInt("idReserva"));
+                Huesped hpd = hd.buscarHuesped(id);
                 resv.setHuesped(hpd);
                 TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
                 resv.setTiphab(th);
@@ -153,9 +153,9 @@ public class ReservaData {
                 resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
                 resv.setImporteTotal(rs.getDouble("ImporteTotal"));
-                resv.setEstado(false);
+                resv.setEstado(rs.getBoolean("Estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID.");
+                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID de huesped.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -164,28 +164,28 @@ public class ReservaData {
         return resv;
     }
     
-    public Reserva buscarReservaActivaPorFecha (int id){
+    public Reserva buscarReservaActivaPorFecha (int fecha){
         
-        String sql = "SELECT idReserva, idHuesped, codigo, cantPersonas, Fecha_salida, ImporteTotal, Estado FROM tipodehabitacion WHERE Fecha_entrada = ? AND Estado = 1";
+        String sql = "SELECT idReserva, idHuesped, codigo, cantPersonas, Fecha_salida, ImporteTotal, Estado FROM reserva WHERE Fecha_entrada = ? AND Estado = 1";
         Reserva resv = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, fecha);
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 resv = new Reserva();
-                resv.setIdReserva(id);
+                resv.setIdReserva(rs.getInt("idReserva"));
                 Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
                 resv.setHuesped(hpd);
                 TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
                 resv.setTiphab(th);
                 resv.setCantPersonas(rs.getInt("cantPersonas"));
-                resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
+                resv.setFecha_entrada(rs.getDate(fecha).toLocalDate());
                 resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
                 resv.setImporteTotal(rs.getDouble("ImporteTotal"));
-                resv.setEstado(true);
+                resv.setEstado(rs.getBoolean("Estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID.");
+                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con esa fecha de entrada.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -194,37 +194,7 @@ public class ReservaData {
         return resv;
     }
     
-    public Reserva buscarReservaInactivaPorFecha (int id){
-        
-        String sql = "SELECT idReserva, idHuesped, codigo, cantPersonas, Fecha_salida, ImporteTotal, Estado FROM tipodehabitacion WHERE Fecha_entrada = ? AND Estado = 0";
-        Reserva resv = null;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()){
-                resv = new Reserva();
-                resv.setIdReserva(id);
-                Huesped hpd = hd.buscarHuesped(rs.getInt("idHuesped"));
-                resv.setHuesped(hpd);
-                TipoHabitacion th = thd.buscarTipoHabitacionPorCod(rs.getInt("codigo"));
-                resv.setTiphab(th);
-                resv.setCantPersonas(rs.getInt("cantPersonas"));
-                resv.setFecha_entrada(rs.getDate("Fecha_entrada").toLocalDate());
-                resv.setFecha_salida(rs.getDate("Fecha_salida").toLocalDate());
-                resv.setImporteTotal(rs.getDouble("ImporteTotal"));
-                resv.setEstado(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe tipo de habitación activa con ese ID.");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de tipo de habitación.");
-        }
-        return resv;
-    }
-    
-    public List<Reserva> listarReservasActivas() {
+    public List<Reserva> listarReservas() {
 
         String sql = "SELECT idReserva, idHuesped, codigo, cantPersonas, Fecha_entrada, Fecha_salida, ImporteTotal, Estado FROM reserva WHERE Estado = 1";
         ArrayList<Reserva> reserva = new ArrayList<>();

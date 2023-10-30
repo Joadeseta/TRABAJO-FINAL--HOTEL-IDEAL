@@ -49,7 +49,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTTipHab = new javax.swing.JTable();
         jBNuevo = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
 
@@ -142,14 +141,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jBEliminar.setText("Eliminar");
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
-            }
-        });
-
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -212,18 +203,14 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBNuevo)
-                        .addGap(88, 88, 88)
-                        .addComponent(jBEliminar)
-                        .addGap(87, 87, 87)
+                        .addGap(171, 171, 171)
                         .addComponent(jBGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBSalir)
-                        .addContainerGap())))
+                        .addComponent(jBSalir)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +256,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo)
-                    .addComponent(jBEliminar)
                     .addComponent(jBGuardar)
                     .addComponent(jBSalir))
                 .addGap(42, 42, 42))
@@ -353,6 +339,7 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
 
     private void jBBuscarTHCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarTHCPActionPerformed
         try {
+            limpiarCamposExcpCantPers();
             String cantPersText = jTextField3.getText();
 
             if (cantPersText.isEmpty()) {
@@ -382,32 +369,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
         tiphab = null;
         cargarDatos();
     }//GEN-LAST:event_jBNuevoActionPerformed
-
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (tiphab != null) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar éste tipo de habitación?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                try {
-                    tiphabdat.eliminarTipoHabitacion(tiphab.getIdTipoHabitacion());
-                    limpiarCampos();
-                    tiphab = null;
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el tipo de habitación.");
-                }
-            } else if (confirmacion == JOptionPane.NO_OPTION){
-                try {
-                    JOptionPane.showMessageDialog(this, "Usted no ha anulado ningún tipo de habitación.");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el tipo de habitación.");
-                }                
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ningún tipo de habitación para eliminar.");
-        }
-        borrarFilaTabla();
-        cargarDatos();
-    }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
@@ -450,7 +411,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
@@ -463,7 +423,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBBuscarTHC;
     private javax.swing.JButton jBBuscarTHCP;
     private javax.swing.JButton jBBuscarTHID;
-    private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBSalir;
@@ -558,6 +517,30 @@ private void cargarDatosPorCantPersonas(){
         }
     }
 
+private void cargarDatosActivas() {
+        listaTH = (ArrayList) tiphabdat.listarTipoHabitacionActivas();
+        for (TipoHabitacion th: listaTH) {
+            modelo.addRow(new Object[] {th.getIdTipoHabitacion(), th.getCodigo(), th.getCapMaxima(), th.getCantCamas(), th.getTipoCamas(), th.getPrecPorNoche(), th.isEstado()});
+        }
+    }
+
+private void cargarDatosInactivas() {
+        listaTH = (ArrayList) tiphabdat.listarTipoHabitacionInactivas();
+        for (TipoHabitacion th: listaTH) {
+            modelo.addRow(new Object[] {th.getIdTipoHabitacion(), th.getCodigo(), th.getCapMaxima(), th.getCantCamas(), th.getTipoCamas(), th.getPrecPorNoche(), th.isEstado()});
+        }
+    }
+
+private void jRBEstadoLista() {                                              
+    if (jRBEstado.isSelected()) {
+        borrarFilaTabla();
+        cargarDatosActivas();
+    } else {
+        borrarFilaTabla();
+        cargarDatosInactivas();
+    }
+}
+
 private void limpiarCampos() {
         jTextField1.setText("");
         jTextField2.setText("");
@@ -566,5 +549,14 @@ private void limpiarCampos() {
         jTextField5.setText("");
         jTextField6.setText("");
         jRBEstado.setSelected(false);
-    }  
+    } 
+
+private void limpiarCamposExcpCantPers() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jRBEstado.setSelected(false);
+    } 
 }
