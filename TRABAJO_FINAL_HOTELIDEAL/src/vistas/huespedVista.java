@@ -8,6 +8,8 @@ package vistas;
 import accesoDatos.HuespedData;
 import entidades.Huesped;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -27,7 +29,38 @@ public class huespedVista extends javax.swing.JInternalFrame {
     public huespedVista() {
         initComponents();
         armarCabeceraTabla();
-        jtTODOSLOSHUESPEDES = new javax.swing.JTable();
+        armarTabla()
+                ;
+       
+
+        jtTODOSLOSHUESPEDES.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = jtTODOSLOSHUESPEDES.getSelectedRow();
+
+                if (filaSeleccionada >= 0) {
+                    int idHuesped = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 0);
+                    int dni = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 1);
+                    String nombre = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 2);
+                    int celular = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 3);
+                    boolean estado = (boolean) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 4);
+                    String domicilio = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 5);
+                    String correo = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 6);
+
+                    // Actualiza los campos de texto con los datos de la fila seleccionada
+                    jTextIdHUESPED.setText(Integer.toString(idHuesped));
+                    jTextNumeroDNI.setText(Integer.toString(dni));
+                    jTextNOMBRE.setText(nombre);
+                    jTextCELULARHUESPED.setText(Integer.toString(celular));                    
+                    jRadioESTADOHUESPED.setSelected(estado);
+                    jTextDOMICILIOHUESPED.setText(domicilio);
+                    jTextCORREOHUESPED.setText(correo);
+                }
+            }
+            
+            
+        });
+
     }
 
     /**
@@ -342,6 +375,8 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jTextCELULARHUESPED.setText("");
         jTextCORREOHUESPED.setText("");
         jRadioESTADOHUESPED.setSelected(false);
+
+        armarTabla();
     }
 
 
@@ -486,7 +521,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonBuscarPorIdActionPerformed
 
     private void jTextCELULARHUESPEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCELULARHUESPEDActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextCELULARHUESPEDActionPerformed
 
     private void armarCabeceraTabla() {
@@ -498,15 +533,18 @@ public class huespedVista extends javax.swing.JInternalFrame {
         filaCabecera.add("Celular");
         filaCabecera.add("Estado");
         filaCabecera.add("Domicilio");
+        filaCabecera.add("Correo");
 
         for (Object columnHeader : filaCabecera) {
             modelo.addColumn(columnHeader);
         }
 
+    }
+
+   private void armarTabla() {
         ArrayList<Huesped> listaHuespedes = hueData.obtenerTodosLosHuespedes();
         modelo.setRowCount(0);
 
-        // Iterar a través de la lista de huéspedes y agregarlos al modelo de tabla
         for (Huesped huesped : listaHuespedes) {
             Object[] fila = {
                 huesped.getIdHuesped(),
@@ -514,7 +552,8 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 huesped.getNombre(),
                 huesped.getCelular(),
                 huesped.isEstado(),
-                huesped.getDomicilio()
+                huesped.getDomicilio(),
+                huesped.getCorreo()
             };
 
             modelo.addRow(fila);

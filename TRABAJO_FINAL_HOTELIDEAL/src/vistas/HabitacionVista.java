@@ -102,6 +102,8 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         jBACTUALIZARHABITACION = new javax.swing.JButton();
         jButtonBUSCAID = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         jButtonBUSCARHABITACION.setText("Buscar");
         jButtonBUSCARHABITACION.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
