@@ -32,6 +32,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         jTextIDHABITACION.setText("");
         jTexTIPOHABITACION.setText("");
         jTextNUMEROHABITACION.setText("");
+        OcupadaDesocuopada.setText("***********");
         jRadioESTADOHABITACION.setSelected(false);
     }
 

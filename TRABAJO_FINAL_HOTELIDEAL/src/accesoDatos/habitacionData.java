@@ -34,18 +34,16 @@ public class habitacionData {
             JOptionPane.showMessageDialog(null, "Error al verificar la existencia de la habitación: " + ex.getMessage());
         }
 
-        return false; 
+        return false;
     }
-    
-    
+
     public void crearHabitacion(Habitacion habitacion) {
 
         if (habitacionExistente(habitacion)) {
             JOptionPane.showMessageDialog(null, "La habitación ya existe. No se ha creado ni actualizado nada.");
-            return; 
+            return;
         }
 
-        
         String sql = "INSERT INTO habitaciones (idHabitacion, codigo, numero_habitacion, estado) VALUES (?,?,?,?)";
 
         try {
@@ -60,9 +58,9 @@ public class habitacionData {
 
             if (rs.next()) {
                 habitacion.setIdHabitacion(rs.getInt(1));
-                
+
                 JOptionPane.showMessageDialog(null, "Habitación creada exitosamente.");
-                
+
             }
 
             ps.close();
@@ -70,8 +68,6 @@ public class habitacionData {
             JOptionPane.showMessageDialog(null, "Error al guardar la habitación: " + ex.getMessage());
         }
     }
-
-    
 
     public void GuardarHabitacion(Habitacion habitacion) {
         String sql = "INSERT INTO habitaciones (idHabitacion, codigo, numero_habitacion, estado) VALUES (?,?,?,?)";
@@ -175,71 +171,71 @@ public class habitacionData {
 
     public void DesactivarEstadoHabitacion(int numero_habitacion) {
         String selectSql = "SELECT estado FROM Habitaciones WHERE numero_habitacion = ?";
-    
-    try {
-        PreparedStatement selectStatement = con.prepareStatement(selectSql);
-        selectStatement.setInt(1, numero_habitacion);
-        ResultSet resultSet = selectStatement.executeQuery();
-        
-        if (resultSet.next()) {
-            int estado = resultSet.getInt("estado");
-            
-            if (estado == 0) {
-                JOptionPane.showMessageDialog(null, "La habitación ya está desocupada.");
-            } else {
-                String updateSql = "UPDATE Habitaciones SET estado = 0 WHERE numero_habitacion = ?";
-                PreparedStatement updateStatement = con.prepareStatement(updateSql);
-                updateStatement.setInt(1, numero_habitacion);
-                int exito = updateStatement.executeUpdate();
-                
-                if (exito > 0) {
-                   
-                    JOptionPane.showMessageDialog(null, "Habitación desocupada exitosamente.");
+
+        try {
+            PreparedStatement selectStatement = con.prepareStatement(selectSql);
+            selectStatement.setInt(1, numero_habitacion);
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int estado = resultSet.getInt("estado");
+
+                if (estado == 0) {
+                    JOptionPane.showMessageDialog(null, "La habitación ya está desocupada.");
                 } else {
-                     
-                    JOptionPane.showMessageDialog(null, "No se pudo desocupar la habitación.");
+                    String updateSql = "UPDATE Habitaciones SET estado = 0 WHERE numero_habitacion = ?";
+                    PreparedStatement updateStatement = con.prepareStatement(updateSql);
+                    updateStatement.setInt(1, numero_habitacion);
+
+                    int filasAfectadas = updateStatement.executeUpdate();
+
+                    if (filasAfectadas > 0) {
+                        JOptionPane.showMessageDialog(null, "Habitación desocupada exitosamente.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo desocupa la habitación.");
+                    }
                 }
+              
+            } else {
+                JOptionPane.showMessageDialog(null, "Habitación no encontrada.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Habitación no encontrada.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla.");
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla.");
     }
-}
 
     public void ActivarEstadoHabitacion(int numero_habitacion) {
         String sql = "SELECT estado FROM Habitaciones WHERE numero_habitacion = ?";
-    
-    try {
-        PreparedStatement selectStatement = con.prepareStatement(sql);
-        selectStatement.setInt(1, numero_habitacion);
-        ResultSet resultSet = selectStatement.executeQuery();
-        
-        if (resultSet.next()) {
-            int estado = resultSet.getInt("estado");
-            
-            if (estado == 1) {
-                JOptionPane.showMessageDialog(null, "La habitación ya está ocupada.");
-            } else {
-                // Si el estado no es 1, entonces podemos actualizarlo.
-                sql = "UPDATE Habitaciones SET estado = 1 WHERE numero_habitacion = ?";
-                PreparedStatement updateStatement = con.prepareStatement(sql);
-                updateStatement.setInt(1, numero_habitacion);
-                int exito = updateStatement.executeUpdate();
-                
-                if (exito > 0) {
-                    JOptionPane.showMessageDialog(null, "Habitación ocupada exitosamente.");
+
+        try {
+            PreparedStatement selectStatement = con.prepareStatement(sql);
+            selectStatement.setInt(1, numero_habitacion);
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int estado = resultSet.getInt("estado");
+
+                if (estado == 1) {
+                    JOptionPane.showMessageDialog(null, "La habitación ya está ocupada.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo ocupar la habitación.");
+                    // Si el estado no es 1, entonces podemos actualizarlo.
+                    sql = "UPDATE Habitaciones SET estado = 1 WHERE numero_habitacion = ?";
+                    PreparedStatement updateStatement = con.prepareStatement(sql);
+                    updateStatement.setInt(1, numero_habitacion);
+                    int exito = updateStatement.executeUpdate();
+
+                    if (exito > 0) {
+                        JOptionPane.showMessageDialog(null, "Habitación ocupada exitosamente.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo ocupar la habitación.");
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Habitación no encontrada.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Habitación no encontrada.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla.");
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla.");
-    }
     }
 
     public Habitacion BuscarporEstado(boolean estado) {
