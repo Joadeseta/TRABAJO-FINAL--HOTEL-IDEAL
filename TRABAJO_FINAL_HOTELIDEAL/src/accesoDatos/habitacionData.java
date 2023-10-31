@@ -154,6 +154,33 @@ public class habitacionData {
         return habitacion;
     }
 
+    public Habitacion BuscarporID(int idHabitacion) {
+        String sql = "SELECT numero_habitacion, codigo, estado FROM habitaciones WHERE idHabitacion = ?";
+        Habitacion habitacion = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idHabitacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                habitacion = new Habitacion();
+                habitacion.setIdHabitacion(idHabitacion);
+                habitacion.setNumeroHabitacion(rs.getInt("numero_habitacion"));
+                habitacion.setCodigo(rs.getInt("codigo"));
+                habitacion.setEstado(rs.getBoolean("estado"));
+
+            } else {
+
+                /*JOptionPane.showMessageDialog(null, "No existe la habitacion con número ingresado.");*/
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla habitacion.");
+            System.out.println("aaaaaa");
+        }
+        return habitacion;
+    }
+
     public void CambiarEstadoHabitacion(int idHabitacion) {
         String sql = "UPDATE Habitaciones SET estado = 1 WHERE idHabitacion = ?";
         try {
@@ -195,7 +222,7 @@ public class habitacionData {
                         JOptionPane.showMessageDialog(null, "No se pudo desocupa la habitación.");
                     }
                 }
-              
+
             } else {
                 JOptionPane.showMessageDialog(null, "Habitación no encontrada.");
             }

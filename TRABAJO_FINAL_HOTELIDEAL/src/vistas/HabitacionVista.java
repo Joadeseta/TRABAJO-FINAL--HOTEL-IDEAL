@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class HabitacionVista extends javax.swing.JInternalFrame {
@@ -27,8 +29,42 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         initComponents();
         armarCabeceraTabla();
         armarTabla();
-    }
+        
+        jtTODASLASHABITACIONES.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = jtTODASLASHABITACIONES.getSelectedRow();
+                    if (selectedRow >= 0) {
+                        // Obtener los valores de la fila seleccionada
+                        String idHabitacion = jtTODASLASHABITACIONES.getValueAt(selectedRow, 0).toString();
+                        String tipoHabitacion = jtTODASLASHABITACIONES.getValueAt(selectedRow, 1).toString();
+                        String numeroHabitacion = jtTODASLASHABITACIONES.getValueAt(selectedRow, 2).toString();
+                        String estado = jtTODASLASHABITACIONES.getValueAt(selectedRow, 3).toString();
 
+                        // Actualizar los campos de texto y otros elementos
+                        jTextIDHABITACION.setText(idHabitacion);
+                        jTexTIPOHABITACION.setText(tipoHabitacion);
+                        jTextNUMEROHABITACION.setText(numeroHabitacion);
+                        OcupadaDesocuopada.setText(estado);
+
+                        // Configurar el estado según lo que se encuentre en la tabla
+                        if (estado.equals("Ocupada")) {
+                            jRadioESTADOHABITACION.setSelected(true);
+                        } else {
+                            jRadioESTADOHABITACION.setSelected(false);
+                        }
+                    }
+                }
+            }
+        });
+    }    
+        
+        
+    
+
+    
+    
     private void limpiarCampos() {
         jTextIDHABITACION.setText("");
         jTexTIPOHABITACION.setText("");
@@ -37,7 +73,8 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         OcupadaDesocuopada.setForeground(Color.CYAN);
         jRadioESTADOHABITACION.setSelected(false);
         armarTabla();
-    }
+    }   
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -63,6 +100,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         JLAlumno2 = new javax.swing.JLabel();
         jBoCUPARHABITACION = new javax.swing.JButton();
         jBACTUALIZARHABITACION = new javax.swing.JButton();
+        jButtonBUSCAID = new javax.swing.JButton();
 
         jButtonBUSCARHABITACION.setText("Buscar");
         jButtonBUSCARHABITACION.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +220,13 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonBUSCAID.setText("Buscar");
+        jButtonBUSCAID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBUSCAIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,26 +240,31 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                             .addComponent(JLAlumno)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2))
-                                .addGap(77, 77, 77)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel2))
+                                        .addGap(77, 77, 77)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jTexTIPOHABITACION, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jTextNUMEROHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jTextIDHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButtonBUSCARHABITACION))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonBUSCARHABITACION)
+                                            .addComponent(jButtonBUSCAID)))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(210, 210, 210)
                                         .addComponent(jRadioESTADOHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(OcupadaDesocuopada))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(OcupadaDesocuopada))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(155, 155, 155)
+                                        .addComponent(JLAlumno2))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -224,12 +274,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                             .addComponent(jBCREARHABITACION, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBoCUPARHABITACION, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBACTUALIZARHABITACION, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(JLAlumno2)
-                    .addContainerGap(363, Short.MAX_VALUE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +284,8 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextIDHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jButtonBUSCAID))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -249,16 +295,18 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jTextNUMEROHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBUSCARHABITACION))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(OcupadaDesocuopada, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jRadioESTADOHABITACION)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(OcupadaDesocuopada, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(67, 67, 67)
+                            .addComponent(jRadioESTADOHABITACION))
+                        .addGap(10, 10, 10)))
+                .addGap(18, 18, 18)
+                .addComponent(JLAlumno2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBCREARHABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,12 +320,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 .addComponent(jBLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(236, 236, 236)
-                    .addComponent(JLAlumno2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(519, Short.MAX_VALUE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -515,6 +558,36 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jBACTUALIZARHABITACIONActionPerformed
 
+    private void jButtonBUSCAIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBUSCAIDActionPerformed
+        try {
+            int idHabitacion = Integer.parseInt(jTextIDHABITACION.getText());
+
+            habitacionActual = habitacionData.BuscarporID(idHabitacion);
+
+            if (habitacionActual != null) {
+                jTextIDHABITACION.setText(Integer.toString(habitacionActual.getIdHabitacion()));
+                jTextNUMEROHABITACION.setText(Integer.toString(habitacionActual.getNumeroHabitacion()));
+                jTexTIPOHABITACION.setText(Integer.toString(habitacionActual.getCodigo()));
+                if (habitacionActual.getEstado()) {
+                    jRadioESTADOHABITACION.setSelected(true);
+                    OcupadaDesocuopada.setText("Ocupada");
+                    OcupadaDesocuopada.setForeground(Color.RED);
+                } else {
+                    jRadioESTADOHABITACION.setSelected(false);
+                    OcupadaDesocuopada.setText("Desocupada");
+                    OcupadaDesocuopada.setForeground(Color.GREEN);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró ninguna habitación con ese número.");
+
+            }
+        } catch (NumberFormatException nf) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese un número por favor");
+
+        }
+    }//GEN-LAST:event_jButtonBUSCAIDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLAlumno;
@@ -526,6 +599,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBLimpiarCampos;
     private javax.swing.JButton jBSalir3;
     private javax.swing.JButton jBoCUPARHABITACION;
+    private javax.swing.JButton jButtonBUSCAID;
     private javax.swing.JButton jButtonBUSCARHABITACION;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
