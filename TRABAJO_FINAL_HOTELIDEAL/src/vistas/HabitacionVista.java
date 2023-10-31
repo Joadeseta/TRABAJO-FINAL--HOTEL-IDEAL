@@ -26,6 +26,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     public HabitacionVista() {
         initComponents();
         armarCabeceraTabla();
+        armarTabla();
     }
 
     private void limpiarCampos() {
@@ -33,7 +34,9 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         jTexTIPOHABITACION.setText("");
         jTextNUMEROHABITACION.setText("");
         OcupadaDesocuopada.setText("***********");
+        OcupadaDesocuopada.setForeground(Color.CYAN);
         jRadioESTADOHABITACION.setSelected(false);
+        armarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -402,10 +405,12 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
             modelo.addColumn(columnHeader);
         }
 
+    }
+
+    private void armarTabla() {
+        
         ArrayList<Habitacion> listaHabitaciones = habitacionData.obtenerTodasLasHabitaciones();
         modelo.setRowCount(0);
-
-        // Iterar a través de la lista de huéspedes y agregarlos al modelo de tabla
         for (Habitacion habitacion : listaHabitaciones) {
             String estado = habitacion.getEstado() ? "Ocupada" : "Desocupada";
             String tipoHabitacion = obtenerTipoHabitacion(habitacion.getCodigo());
@@ -457,7 +462,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                     limpiarCampos();
                     habitacionActual = null;
 
-                   /* JOptionPane.showMessageDialog(this, "Habitación ocupada exitosamente.");*/
+                    /* JOptionPane.showMessageDialog(this, "Habitación ocupada exitosamente.");*/
                 } catch (Exception e) {
 
                     JOptionPane.showMessageDialog(this, "Error al inhabilitar la habitación");
