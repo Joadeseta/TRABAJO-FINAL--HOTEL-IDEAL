@@ -300,7 +300,6 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró ninguna habitación con ese número.");
-
             }
         } catch (NumberFormatException nf) {
 
@@ -322,7 +321,6 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
 
     private void jBCREARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCREARHABITACIONActionPerformed
-
         try {
             String tipoHabit = jTexTIPOHABITACION.getText();
             int numeroHabitacion = Integer.parseInt(jTextNUMEROHABITACION.getText());
@@ -340,18 +338,23 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 return;
             }
             if (habitacionActual == null) {
-
                 Habitacion nuevaHabitacion = new Habitacion();
-                nuevaHabitacion.setCodigo(tipoHabitInt);
+                nuevaHabitacion.setCodigo(tipoHabitInt);  // Usar tipoHabitInt en lugar de tipoHabitacion
                 nuevaHabitacion.setNumeroHabitacion(numeroHabitacion);
                 nuevaHabitacion.setEstado(estado);
 
-                habitacionData.crearHabitacion(nuevaHabitacion);
+                habitacionData.GuardarHabitacion(nuevaHabitacion);
 
+                JOptionPane.showMessageDialog(this, "Habitación guardada exitosamente.");
             } else {
+                // Actualizar la habitación existente
+                habitacionActual.setCodigo(tipoHabitInt);  // Usar tipoHabitInt en lugar de tipoHabitacion
+                habitacionActual.setNumeroHabitacion(numeroHabitacion);
+                habitacionActual.setEstado(estado);
 
-                JOptionPane.showMessageDialog(this, "La habitación ya existe, no se ha realizado ninguna actualización.");
+                habitacionData.ModificarHabitacion(habitacionActual);
 
+                JOptionPane.showMessageDialog(this, "Habitación actualizada exitosamente.");
             }
 
             limpiarCampos();
@@ -366,17 +369,17 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
 
     private void jBDESOSUPARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDESOSUPARHABITACIONActionPerformed
         if (habitacionActual != null) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea marcar esta habitacion como desocupada?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea inhabilitar esta habitacion?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 try {
 
-                    habitacionData.DesactivarEstadoHabitacion(habitacionActual.getNumeroHabitacion());
+                    habitacionData.DesactivarEstadoHabitacion(habitacionActual.getIdHabitacion());
 
                     limpiarCampos();
                     habitacionActual = null;
 
-                    /*JOptionPane.showMessageDialog(this, "Habitación desocupada exitosamente.");*/
+                    JOptionPane.showMessageDialog(this, "Habitacion inhabilitada exitosamente.");
                 } catch (Exception e) {
 
                     JOptionPane.showMessageDialog(this, "Error al inhabilitar la habitación");
@@ -445,68 +448,11 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalir3ActionPerformed
 
     private void jBoCUPARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoCUPARHABITACIONActionPerformed
-        if (habitacionActual != null) {
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea marcar esta habitacion como ocupada?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                try {
-
-                    habitacionData.ActivarEstadoHabitacion(habitacionActual.getNumeroHabitacion());
-
-                    limpiarCampos();
-                    habitacionActual = null;
-
-                   /* JOptionPane.showMessageDialog(this, "Habitación ocupada exitosamente.");*/
-                } catch (Exception e) {
-
-                    JOptionPane.showMessageDialog(this, "Error al inhabilitar la habitación");
-                }
-            }
-        } else {
-
-            JOptionPane.showMessageDialog(this, "No ha seleccionado ninguna habitacion para inhabilitar.");
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jBoCUPARHABITACIONActionPerformed
 
     private void jBACTUALIZARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBACTUALIZARHABITACIONActionPerformed
-
-        try {
-            String tipoHabit = jTexTIPOHABITACION.getText();
-            int numeroHabitacion = Integer.parseInt(jTextNUMEROHABITACION.getText());
-            boolean estado = jRadioESTADOHABITACION.isSelected();
-
-            if (tipoHabit.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese el tipo de habitación.");
-                return;
-            }
-
-            int tipoHabitInt = Integer.parseInt(tipoHabit);
-
-            if (tipoHabitInt < 1 || tipoHabitInt > 3) {
-                JOptionPane.showMessageDialog(this, "Ingrese el codigo o tipo de habitación entre 1 y 3.");
-                return;
-            }
-            if (habitacionActual != null) {
-
-                habitacionActual.setCodigo(tipoHabitInt);
-                habitacionActual.setNumeroHabitacion(numeroHabitacion);
-                habitacionActual.setEstado(estado);
-
-                habitacionData.ModificarHabitacion(habitacionActual);
-
-                /*JOptionPane.showMessageDialog(this, "Habitación actualizada exitosamente.");*/
-            } else {
-                JOptionPane.showMessageDialog(this, "La habitación no existe, cree una o seleccione una que ya exista.");
-            }
-
-            limpiarCampos();
-            habitacionActual = null;
-        } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar o modificar la habitación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jBACTUALIZARHABITACIONActionPerformed
 
 
