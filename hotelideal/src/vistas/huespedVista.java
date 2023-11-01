@@ -425,7 +425,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
             huespedActual = null;
 
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Ingrese un número.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo DNI.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar o modificar al huésped: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

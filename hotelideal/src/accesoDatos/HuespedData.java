@@ -41,8 +41,6 @@ public class HuespedData {
             ps.setString(4, huesped.getCorreo());
             ps.setInt(5, huesped.getCelular());
             ps.setBoolean(6, huesped.isEstado());
-            
-            System.out.println("aaaaaa");
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -80,9 +78,6 @@ public class HuespedData {
                 huesped.setCelular(rs.getInt("celular"));
                 huesped.setEstado(rs.getBoolean("estado"));
 
-                System.out.println("aaaaaa");
-                
-                
                 return huesped;
             }
         } catch (SQLException ex) {
@@ -104,8 +99,6 @@ public class HuespedData {
             ps.setBoolean(6, huespedActualizado.isEstado());
             ps.setInt(7, huespedActualizado.getIdHuesped());
 
-            System.out.println("aaaaaa");
-            
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas == 1) {
@@ -154,10 +147,7 @@ public class HuespedData {
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setCelular(rs.getInt("celular"));
-               huesped.setEstado(rs.getBoolean("estado"));
-               System.out.println("aaaaaa");
-               
-               
+                huesped.setEstado(true);
             } else {
                 
                /* JOptionPane.showMessageDialog(null, "No existe un huésped con ese ID");*/
@@ -185,10 +175,7 @@ public class HuespedData {
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setCelular(rs.getInt("celular"));
-                huesped.setEstado(rs.getBoolean("estado"));
-                
-                System.out.println("aaaaaa");
-                
+                huesped.setEstado(true);
             } else {
                 
                /* JOptionPane.showMessageDialog(null, "No existe un huésped con ese DNI");*/
@@ -203,7 +190,7 @@ public class HuespedData {
 
     public ArrayList<Huesped> obtenerTodosLosHuespedes() {
         ArrayList<Huesped> listaHuespedes = new ArrayList<>();
-        String sql = "SELECT idHuesped, dni, nombre, domicilio, correo, celular, estado FROM huesped";
+        String sql = "SELECT idHuesped, dni, nombre, domicilio, correo, celular FROM huesped";
         try (PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -214,13 +201,8 @@ public class HuespedData {
                 huesped.setDomicilio(rs.getString("domicilio"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setCelular(rs.getInt("celular"));
-                huesped.setEstado(rs.getBoolean("estado"));
+                huesped.setEstado(true);
                 listaHuespedes.add(huesped);
-                
-                
-                System.out.println("aaaaaa");
-                
-                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
