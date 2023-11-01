@@ -18,7 +18,6 @@ public class tipohabitacionVista extends javax.swing.JInternalFrame {
     public tipohabitacionVista() {
         initComponents();
         
-        initComponents();
         armarCabeceraTabla();
         cargarDatos();
     }
