@@ -18,10 +18,10 @@ public class Conexion {
   
 
     // URL de conexión a la base de datos (debe especificar el host y la base de datos)
-    private static final String URL = "jdbc:mariadb://localhost/";
+    private static final String URL = "jdbc:mariadb://localhost/3307";
     private static final String DB = "hotel_ideal";   //Nombre de la base de datos
     private static final String USUARIO = "root";// Nombre de usuario de la base de datos
-    private static final String PASSWORD = ""; // Contraseña de la base de datos
+    private static final String PASSWORD = " "; // Contraseña de la base de datos
 
     // Objeto de conexión a la base de datos
     private static Connection connection;
