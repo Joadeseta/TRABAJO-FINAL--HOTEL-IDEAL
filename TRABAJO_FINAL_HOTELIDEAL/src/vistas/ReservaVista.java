@@ -567,21 +567,24 @@ private void borrarFilaTabla() {
 private void cargarDatos() {
         listaR = (ArrayList) resvdat.listarReservas();
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
 private void cargarDatosActivas() {
         listaR = (ArrayList) resvdat.listarReservasActivas();
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
 private void cargarDatosInactivas() {
         listaR = (ArrayList) resvdat.listarReservasInactivas();
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
@@ -594,7 +597,8 @@ private void cargarDatosPorIdReserva(){
         listaR = (ArrayList) resvdat.listarReservasPorIDReserva(idSeleccionado);
         modelo.setRowCount(0);
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
@@ -607,7 +611,8 @@ private void cargarDatosPorIdHuesped(){
         listaR = (ArrayList) resvdat.listarReservasPorIDHuesped(idSeleccionado);
         modelo.setRowCount(0);
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
@@ -620,7 +625,8 @@ private void cargarDatosPorCod(){
         listaR = (ArrayList) resvdat.listarReservasPorCod(idSeleccionado);
         modelo.setRowCount(0);
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
@@ -633,7 +639,8 @@ private void cargarDatosPorCantPers(){
         listaR = (ArrayList) resvdat.listarReservasPorCantPers(idSeleccionado);
         modelo.setRowCount(0);
         for (Reserva r: listaR) {
-            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), r.isEstado()});
+            String estado = r.isEstado() ? "Ocupada" : "Desocupada";
+            modelo.addRow(new Object[] {r.getIdReserva(), r.getIdHuesped(), r.getCodigo(), r.getCantPersonas(), r.getFecha_entrada(), r.getFecha_salida(), r.getImporteTotal(), estado});
         }
     }
 
