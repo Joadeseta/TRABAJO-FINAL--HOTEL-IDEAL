@@ -88,7 +88,7 @@ public class HuespedData {
     }
 
     public void actualizarHuesped(Huesped huespedActualizado) {
-        String sql = "UPDATE huesped SET nombre=?, dni=?, domicilio=?, correo=?, celular=?, estado=? WHERE idHuesped=?";
+        String sql = "UPDATE huesped SET nombre=?, dni=?, domicilio=?, correo=?, celular=?, estado=? WHERE dni=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, huespedActualizado.getNombre());
@@ -113,20 +113,23 @@ public class HuespedData {
     }
 
     public void eliminaHuesped(int idHuesped) {
-        String sql = "UPDATE huesped SET estado=0 WHERE idHuesped=?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idHuesped);
+        String sql = "DELETE FROM huesped WHERE idHuesped=?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idHuesped);
 
-            int filasAfectadas = ps.executeUpdate();
+        int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas == 1) {
-                /* JOptionPane.showMessageDialog(null, "Se actualizó la base de datos correctamente");*/
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar al huésped");
+        if (filasAfectadas == 1) {
+            System.out.println("aaaaaa");
+            /*JOptionPane.showMessageDialog(null, "Huésped eliminado exitosamente.");*/
+             System.out.println("aaaaaa");
         }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "No se pudo eliminar al huésped");
+    }
+
     }
 
     public Huesped buscarHuesped(int idHuesped) {
@@ -146,7 +149,9 @@ public class HuespedData {
                 huesped.setCelular(rs.getInt("celular"));
                 huesped.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un huésped con ese ID");
+                
+               /* JOptionPane.showMessageDialog(null, "No existe un huésped con ese ID");*/
+               
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

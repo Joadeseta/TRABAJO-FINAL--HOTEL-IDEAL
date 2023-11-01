@@ -44,7 +44,8 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
 
                         // Actualizar los campos de texto y otros elementos
                         jTextIDHABITACION.setText(idHabitacion);
-                        jTexTIPOHABITACION.setText(tipoHabitacion);
+                        jTexTIPOHABITACION.setText(obtenerCodigoTipoHabitacion(tipoHabitacion));
+                        /*jTexTIPOHABITACION.setText(tipoHabitacion);*/
                         jTextNUMEROHABITACION.setText(numeroHabitacion);
                         OcupadaDesocuopada.setText(estado);
 
@@ -75,6 +76,19 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         armarTabla();
     }   
     
+    
+    private String obtenerCodigoTipoHabitacion(String tipoHabitacion) {
+    switch (tipoHabitacion) {
+        case "Tipo 1/Simple/1 Persona":
+            return "1";
+        case "Tipo 2/Doble/2 Personas":
+            return "2";
+        case "Tipo 3/Triple/2 Personas":
+            return "3";
+        default:
+            return "Desconocido";
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -414,6 +428,12 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCREARHABITACIONActionPerformed
 
     private void jBDESOSUPARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDESOSUPARHABITACIONActionPerformed
+       
+        int idHabitacion = Integer.parseInt(jTextIDHABITACION.getText());
+
+            habitacionActual = habitacionData.BuscarporID(idHabitacion);
+        
+        
         if (habitacionActual != null) {
             int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea marcar esta habitacion como desocupada?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
@@ -458,6 +478,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         for (Habitacion habitacion : listaHabitaciones) {
             String estado = habitacion.getEstado() ? "Ocupada" : "Desocupada";
+            
             String tipoHabitacion = obtenerTipoHabitacion(habitacion.getCodigo());
             Object[] fila = {
                 habitacion.getIdHabitacion(),
@@ -476,7 +497,7 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
 
         switch (codigo) {
             case 1:
-                tipoHabitacion = "Tipo 1/Simple/1 Persona ";
+                tipoHabitacion = "Tipo 1/Simple/1 Persona";
                 break;
             case 2:
                 tipoHabitacion = "Tipo 2/Doble/2 Personas";
@@ -496,6 +517,14 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalir3ActionPerformed
 
     private void jBoCUPARHABITACIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoCUPARHABITACIONActionPerformed
+       
+        
+        int idHabitacion = Integer.parseInt(jTextIDHABITACION.getText());
+
+            habitacionActual = habitacionData.BuscarporID(idHabitacion);
+        
+        
+        
         if (habitacionActual != null) {
             int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea marcar esta habitacion como ocupada?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
@@ -537,6 +566,16 @@ public class HabitacionVista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Ingrese el codigo o tipo de habitación entre 1 y 3.");
                 return;
             }
+            
+            
+            int idHabitacion = Integer.parseInt(jTextIDHABITACION.getText());
+
+            habitacionActual = habitacionData.BuscarporID(idHabitacion);
+            
+            
+            
+            
+            
             if (habitacionActual != null) {
 
                 habitacionActual.setCodigo(tipoHabitInt);

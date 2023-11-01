@@ -20,44 +20,55 @@ import javax.swing.table.DefaultTableModel;
  * @author joadz
  */
 public class huespedVista extends javax.swing.JInternalFrame {
-    
+
     DefaultTableModel modelo = new DefaultTableModel();
-    
+
     private final HuespedData hueData = new HuespedData();
     private Huesped huespedActual = null;
-    
+
     public huespedVista() {
         initComponents();
         armarCabeceraTabla();
         armarTabla();
-        
+
         jtTODOSLOSHUESPEDES.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int filaSeleccionada = jtTODOSLOSHUESPEDES.getSelectedRow();
-                
+
                 if (filaSeleccionada >= 0) {
                     int idHuesped = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 0);
                     int dni = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 1);
                     String nombre = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 2);
                     int celular = (int) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 3);
-                    boolean estado = (boolean) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 4);
+                    String estado = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 4);
                     String domicilio = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 5);
                     String correo = (String) jtTODOSLOSHUESPEDES.getValueAt(filaSeleccionada, 6);
 
-                    // Actualiza los campos de texto con los datos de la fila seleccionada
+                    String estadoUsuario;
+                    if (estado.equals("Activo")) {
+                        estadoUsuario = "Usuario activo";
+                    } else if (estado.equals("Inactivo")) {
+                        estadoUsuario = "Usuario inactivo";
+                    } else {
+                        // Manejar el caso en que el valor en la tabla no sea válido
+                        estadoUsuario = "Estado no válido";
+                    }
+
                     jTextIdHUESPED.setText(Integer.toString(idHuesped));
                     jTextNumeroDNI.setText(Integer.toString(dni));
                     jTextNOMBRE.setText(nombre);
                     jTextCELULARHUESPED.setText(Integer.toString(celular));
-                    jRadioESTADOHUESPED.setSelected(estado);
+                    jRadioESTADOHUESPED.setText(estado);
                     jTextDOMICILIOHUESPED.setText(domicilio);
                     jTextCORREOHUESPED.setText(correo);
+                    jLESTADODELUSUARIO.setText(estadoUsuario);
+
                 }
             }
-            
+
         });
-        
+
     }
 
     /**
@@ -93,7 +104,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTODOSLOSHUESPEDES = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
+        jLESTADODELUSUARIO = new javax.swing.JLabel();
         jBActualizarHuesped = new javax.swing.JButton();
 
         jPanelNOMBREHUESPED.setBackground(new java.awt.Color(204, 255, 255));
@@ -213,8 +224,8 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jtTODOSLOSHUESPEDES.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jtTODOSLOSHUESPEDES);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("***********");
+        jLESTADODELUSUARIO.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLESTADODELUSUARIO.setText("***********");
 
         jBActualizarHuesped.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBActualizarHuesped.setText("Actualizar huesped");
@@ -270,7 +281,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                                     .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
                                         .addComponent(jRadioESTADOHUESPED, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8)))
+                                        .addComponent(jLESTADODELUSUARIO)))
                                 .addGap(83, 83, 83)))
                         .addContainerGap(54, Short.MAX_VALUE))))
             .addGroup(jPanelNOMBREHUESPEDLayout.createSequentialGroup()
@@ -323,7 +334,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelNOMBREHUESPEDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jLESTADODELUSUARIO, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(jRadioESTADOHUESPED))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +373,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioESTADOHUESPEDActionPerformed
 
     private void jBLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarCamposActionPerformed
-        
+
         limpiarCampos();
         huespedActual = null;
     }//GEN-LAST:event_jBLimpiarCamposActionPerformed
@@ -374,13 +385,14 @@ public class huespedVista extends javax.swing.JInternalFrame {
         jTextCELULARHUESPED.setText("");
         jTextCORREOHUESPED.setText("");
         jRadioESTADOHUESPED.setSelected(false);
-        
+        jLESTADODELUSUARIO.setText("***********");
+
         armarTabla();
     }
-    
+
 
     private void jBnuevoHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoHuespedActionPerformed
-        
+
         try {
             String dniS = jTextNumeroDNI.getText();
             String nombre = jTextNOMBRE.getText();
@@ -389,14 +401,14 @@ public class huespedVista extends javax.swing.JInternalFrame {
             Integer celular = Integer.parseInt(jTextCELULARHUESPED.getText());
             boolean estado = jRadioESTADOHUESPED.isSelected();
             int dni = Integer.parseInt(dniS);
-            
+
             if (dni <= 0 || nombre.isEmpty() || domicilio.isEmpty() || correo.isEmpty() || celular <= 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese datos válidos en todos los campos obligatorios.");
                 return;
             }
-            
+
             if (huespedActual == null) {
-                
+
                 Huesped huespedExistente = hueData.obtenerHuespedPorDNIYID(dni); // Reemplaza "id" con el ID del huésped actual
 
                 if (huespedExistente == null) {
@@ -406,35 +418,42 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "El huésped ya existe en la base de datos.");
                 }
-                
+
             }
-            
+
             limpiarCampos();
             huespedActual = null;
-            
+
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo DNI.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar o modificar al huésped: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
 
     }//GEN-LAST:event_jBnuevoHuespedActionPerformed
 
     private void jBELIMINARHUESPEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBELIMINARHUESPEDActionPerformed
+
+        String dniText = jTextNumeroDNI.getText();
+
+        int dni3 = Integer.parseInt(dniText);
+
+        huespedActual = hueData.buscarPorDni(dni3);
+
         if (huespedActual != null) {
             int confirmacion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar este Huesped?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-            
+
             if (confirmacion == JOptionPane.YES_OPTION) {
                 try {
-                    // Intenta eliminar al alumno
+
                     hueData.eliminaHuesped(huespedActual.getIdHuesped());
 
-                    // Limpia los campos y establece alumnoActual a null
                     limpiarCampos();
                     huespedActual = null;
-                    
+                    System.out.println("aaaaaa");
                     JOptionPane.showMessageDialog(this, "Huesped eliminado exitosamente.");
+                    System.out.println("aaaaaa");
                 } catch (Exception e) {
                     // Maneja las excepciones que puedan ocurrir durante la eliminación
                     JOptionPane.showMessageDialog(this, "Error al eliminar al huesped: ");
@@ -452,22 +471,22 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalir3ActionPerformed
 
     private void jButtonBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorDniActionPerformed
-        
+
         try {
-            
+
             String dniText = jTextNumeroDNI.getText();
-            
+
             if (dniText.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Ingrese un número de DNI.");
-                return;                
+                return;
             }
-            
+
             int dni = Integer.parseInt(dniText);
-            
+
             huespedActual = hueData.buscarPorDni(dni);
-            
+
             if (huespedActual != null) {
-                
+
                 jTextIdHUESPED.setText(Integer.toString(huespedActual.getIdHuesped()));
                 jTextNOMBRE.setText(huespedActual.getNombre());
                 jTextCELULARHUESPED.setText(Integer.toString(huespedActual.getCelular()));
@@ -475,12 +494,12 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 jTextDOMICILIOHUESPED.setText(huespedActual.getDomicilio());
                 jRadioESTADOHUESPED.setSelected(huespedActual.isEstado());
             } else {
-               
+
                 JOptionPane.showMessageDialog(this, "No se encontró ningún huesped con ese DNI.");
             }
-            
+
         } catch (NumberFormatException nf) {
-            
+
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo de DNI.");
         }
 
@@ -490,7 +509,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
         try {
             int numHuesped = Integer.parseInt(jTextIdHUESPED.getText());
             huespedActual = hueData.buscarHuesped(numHuesped);
-            
+
             if (huespedActual != null) {
                 jTextNumeroDNI.setText(Integer.toString(huespedActual.getDni()));
                 jTextIdHUESPED.setText(Integer.toString(huespedActual.getIdHuesped()));
@@ -500,13 +519,13 @@ public class huespedVista extends javax.swing.JInternalFrame {
                 jTextCORREOHUESPED.setText(huespedActual.getCorreo());
                 jRadioESTADOHUESPED.setSelected(huespedActual.isEstado());
             } else {
-                
-                JOptionPane.showMessageDialog(this, "No se encontró ningún huesped con ese número.");
+
+                JOptionPane.showMessageDialog(this, "No se encontró ningún huesped con ese número ID.");
             }
         } catch (NumberFormatException nf) {
-            
+
             JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo ID del Huesped.");
-            
+
         }
 
     }//GEN-LAST:event_jButtonBuscarPorIdActionPerformed
@@ -516,12 +535,57 @@ public class huespedVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextCELULARHUESPEDActionPerformed
 
     private void jBActualizarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarHuespedActionPerformed
-        // TODO add your handling code here:
+        try {
+            String dniS = jTextNumeroDNI.getText();
+            String nombre = jTextNOMBRE.getText();
+            String domicilio = jTextDOMICILIOHUESPED.getText();
+            String correo = jTextCORREOHUESPED.getText();
+            Integer celular = Integer.parseInt(jTextCELULARHUESPED.getText());
+            boolean estado = jRadioESTADOHUESPED.isSelected();
+            int dni = Integer.parseInt(dniS);
+
+            if (dni <= 0 || nombre.isEmpty() || domicilio.isEmpty() || correo.isEmpty() || celular <= 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese datos válidos en todos los campos obligatorios.");
+                return;
+            }
+
+            Huesped huespedExistente = hueData.obtenerHuespedPorDNIYID(dni); // Reemplaza "id" con el ID del huésped actual
+
+            String dniText = jTextNumeroDNI.getText();
+
+            int dni2 = Integer.parseInt(dniText);
+
+            huespedActual = hueData.buscarPorDni(dni2);
+
+            if (huespedExistente != null) {
+                huespedActual.setDni(dni);
+                huespedActual.setNombre(nombre);
+                huespedActual.setDomicilio(domicilio);
+                huespedActual.setCorreo(correo);
+                huespedActual.setCelular(celular);
+                huespedActual.setEstado(estado);
+                hueData.actualizarHuesped(huespedActual);
+                JOptionPane.showMessageDialog(this, "Huesped actualizado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "El Huesped no existe.");
+
+            }
+
+            limpiarCampos();
+            huespedActual = null;
+
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número válido en el campo DNI.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al modificar al huésped: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jBActualizarHuespedActionPerformed
-    
+
     private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-        
+
         filaCabecera.add("ID");
         filaCabecera.add("Dni");
         filaCabecera.add("Nombre");
@@ -529,31 +593,33 @@ public class huespedVista extends javax.swing.JInternalFrame {
         filaCabecera.add("Estado");
         filaCabecera.add("Domicilio");
         filaCabecera.add("Correo");
-        
+
         for (Object columnHeader : filaCabecera) {
             modelo.addColumn(columnHeader);
         }
-        
+
     }
-    
+
     private void armarTabla() {
         ArrayList<Huesped> listaHuespedes = hueData.obtenerTodosLosHuespedes();
         modelo.setRowCount(0);
-        
+
         for (Huesped huesped : listaHuespedes) {
+            String estado = huesped.isEstado() ? "Activo" : "Inactivo";
             Object[] fila = {
                 huesped.getIdHuesped(),
                 huesped.getDni(),
                 huesped.getNombre(),
                 huesped.getCelular(),
-                huesped.isEstado(),
+                estado,
                 huesped.getDomicilio(),
                 huesped.getCorreo()
+
             };
-            
+
             modelo.addRow(fila);
         }
-        
+
         jtTODOSLOSHUESPEDES.setModel(modelo);
     }
 
@@ -567,6 +633,7 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBnuevoHuesped;
     private javax.swing.JButton jButtonBuscarPorDni;
     private javax.swing.JButton jButtonBuscarPorId;
+    private javax.swing.JLabel jLESTADODELUSUARIO;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -574,7 +641,6 @@ public class huespedVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanelNOMBREHUESPED;
     private javax.swing.JRadioButton jRadioESTADOHUESPED;
     private javax.swing.JScrollPane jScrollPane1;
