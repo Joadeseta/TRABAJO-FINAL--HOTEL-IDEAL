@@ -7,8 +7,8 @@ public class Reserva {
     //Atributos de la clase.
     
     private int idReserva;
-    private Huesped huesped;
-    private TipoHabitacion tiphab;
+    private int idHuesped;
+    private int codigo;
     private int cantPersonas;
     private LocalDate Fecha_entrada;
     private LocalDate Fecha_salida;
@@ -22,9 +22,9 @@ public class Reserva {
     
     // Constructor para crear una nueva Reserva (sin ID).
 
-    public Reserva(Huesped huesped, TipoHabitacion tiphab, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
-        this.huesped = huesped;
-        this.tiphab = tiphab;
+    public Reserva(int idHuesped, int codigo, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
+        this.idHuesped = idHuesped;
+        this.codigo = codigo;
         this.cantPersonas = cantPersonas;
         this.Fecha_entrada = Fecha_entrada;
         this.Fecha_salida = Fecha_salida;
@@ -33,17 +33,17 @@ public class Reserva {
     }
     // Constructor para crear una Reserva con un ID específico (normalmente desde la base de datos)
 
-    public Reserva(int idReserva, Huesped huesped, TipoHabitacion tiphab, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
+    public Reserva(int idReserva, int idHuesped, int codigo, int cantPersonas, LocalDate Fecha_entrada, LocalDate Fecha_salida, double ImporteTotal, boolean Estado) {
         this.idReserva = idReserva;
-        this.huesped = huesped;
-        this.tiphab = tiphab;
+        this.idHuesped = idHuesped;
+        this.codigo = codigo;
         this.cantPersonas = cantPersonas;
         this.Fecha_entrada = Fecha_entrada;
         this.Fecha_salida = Fecha_salida;
         this.ImporteTotal = ImporteTotal;
         this.Estado = Estado;
     }
-    
+
     // Métodos getters y setters para acceder y modificar los atributos de la entidad.
     // Estos son utilizados para obtener y establecer valores en los objetos Reserva.
 
@@ -55,22 +55,21 @@ public class Reserva {
         this.idReserva = idReserva;
     }
 
-    public Huesped getHuesped() {
-        return huesped;
+    public int getIdHuesped() {
+        return idHuesped;
     }
 
-    public void setHuesped(Huesped huesped) {
-        this.huesped = huesped;
+    public void setIdHuesped(int idHuesped) {
+        this.idHuesped = idHuesped;
     }
 
-    public TipoHabitacion getTiphab() {
-        return tiphab;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setTiphab(TipoHabitacion tiphab) {
-        this.tiphab = tiphab;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
-    
     public int getCantPersonas() {
         return cantPersonas;
     }
